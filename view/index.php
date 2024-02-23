@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../css/index1.css">
-    <link rel="stylesheet" href="../css/style4.css">
+    <link rel="stylesheet" href="../css/style5.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
@@ -51,7 +51,7 @@
                 </div>
             </div>
             <div class="caja4 flex-1 relative f-col">
-                <input type="search" class="w100p fz15 select p10 b-shadow-5-1-gray" name="pases" id="pases" placeholder="Pases..." autocomplete="off">
+                <input type="search" class="w100p fz15 select p10 b-shadow-5-1-gray" name="pases" id="pases" placeholder="Pases..." autocomplete="off" required>
             </div>
             <div class="btn">
                 <button type="submit" class="p10 bg-purple mayus pointer" name="insertar_comercial" value="1" id="insertar_comercial">Enviar</button>
@@ -61,7 +61,7 @@
             <h3>Programado</h3>
             <input type="search" name="" id="buscadorProgramacion" class="p10" placeholder="Buscardor">
         </header>
-        <table class="tabla-comerciales tabla w100p" border="1">
+        <table class="tabla-comerciales w100p" border="0">
             <thead>
                 <th class="p5 bg-black">Clientes</th>
                 <th class="p5 bg-black">Programa</th>
@@ -71,24 +71,28 @@
             </thead>
             <tbody id="vista_comercial">
                 <?php foreach(Comerciales::Mostrar() as $item):?>
-                <tr>
-                    <td>
+                <tr class="b1">
+                    <td class="b1 hp10">
                         <?= $item->des_cliente ?>
                     </td>
-                    <td>
+                    <td class="b1 hp10">
                         <?= $item->des_programa ?>
                     </td>
-                    <td>
+                    <td class="b1 hp10">
                         <?= $item->des_tipo ?>
                     </td>
-                    <td>
+                    <td class="b1 vp5">
                         <?= Pases_historial::Pases_echos($item->id_comercial) ?>
                         <?= '/ ' . $item->pases ?>
                     </td>
-                    <td class="min-content-w bg-black">
-                        <?php for($i = Pases_historial::Pases_echos($item->id_comercial); $i < $item->pases; $i++):?>
-                        <input type="checkbox" name="check" id="" value="1">
-                        <?php endfor;?>
+                    <td class="min-content-w f-row jc-c a-c gap5 overflow-auto">
+                        <?php if(Pases_historial::Pases_echos($item->id_comercial) != $item->pases):?>
+                            <form action="../Request/Pases_historial.php" method="post" class=" w200px`">
+                                <button type="submit" class="bg-green p10 br7 pointer" name="pases" value="<?= $item->id_comercial ?>">
+                                    Pase
+                                </button>
+                            </form>
+                        <?php endif;?>
                     </td>
                 </tr>
                 <?php endforeach; ?>
@@ -97,59 +101,4 @@
     </main>
 </body>
 </html>
-<script>
-    var i_comercial = document.getElementById("insertar_comercial")
-    var formulario_comercial = document.getElementById("formulario_comercial")
-    i_comercial.addEventListener('click', function(event){
-        if(!window.confirm('Desea continuar?')){
-            event.preventDefault()
-        }
-    })
-    function InputOnRadio(inputId, radioId) {
-        var input = document.getElementById(inputId);
-        var radio = document.getElementById(radioId);
-
-        input.addEventListener('focus', function() {
-            radio.checked = true;
-        });
-    }
-    function filtrarOpciones(inputId, optionsContainerId) {
-        var input = document.getElementById(inputId);
-        var labels = document.querySelectorAll('#' + optionsContainerId + ' .option label');
-        input.addEventListener('input', function() {
-            var textoBusqueda = this.value.toLowerCase();
-            labels.forEach(label => {
-                var labelTexto = label.textContent.toLowerCase();
-                var mostrar = true;
-                for (var i = 0; i < textoBusqueda.length; i++) {
-                    var caracter = textoBusqueda[i];
-                    if (labelTexto.includes(caracter)) {
-                        labelTexto = labelTexto.replace(caracter, '');
-                    } else {
-                        mostrar = false;
-                        break;
-                    }
-                }
-                label.style.display = mostrar ? 'block' : 'none';
-            });
-        });
-    }
-    function ValueOfLabel_cliente(label){
-        var input = document.getElementById("cliente")
-        input.value = label
-    }
-    function ValueOfLabel_programa(label){
-        var input = document.getElementById("programa")
-        input.value = label
-    }
-    function ValueOfLabel_tipo(label){
-        var input = document.getElementById("tipo")
-        input.value = label
-    }
-    filtrarOpciones("cliente", "selectcliente")
-    filtrarOpciones("programa","selectprograma")
-    filtrarOpciones("tipo","selecttipo")
-    InputOnRadio("cliente", "radio-cliente");
-    InputOnRadio("programa", "radio-programa");
-    InputOnRadio("tipo", "radio-tipo");
-</script>
+<script src="../js/script_prueba_1.js"></script>>

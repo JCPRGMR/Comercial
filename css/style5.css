@@ -65,7 +65,7 @@ main{
     background-color: var(--purple-black);
 }
 .bg-green{
-    background-color: green;
+    background-color: rgb(22, 144, 61);
     color: white;
 }
 .bg-purple{
@@ -287,6 +287,67 @@ img{
 .p50{
     padding: 50px;
 }
+.vp5{
+    padding: 5px 0px;
+}
+.vp10{
+    padding: 10px 0px;
+}
+.vp15{
+    padding: 15px 0px;
+}
+.vp20{
+    padding: 20px 0px;
+}
+.vp25{
+    padding: 25px 0px;
+}
+.vp30{
+    padding: 30px 0px;
+}
+.vp35{
+    padding: 35px 0px;
+}
+.vp40{
+    padding: 40px 0px;
+}
+.vp45{
+    padding: 45px 0px;
+}
+.vp50{
+    padding: 50px 0px;
+}
+.hp5{
+    padding: 0px 5px;
+}
+.hp10{
+    padding: 0px 10px;
+}
+.hp15{
+    padding: 0px 15px;
+}
+.hp20{
+    padding: 0px 20px;
+}
+.hp25{
+    padding: 0px 25px;
+}
+.hp30{
+    padding: 0px 30px;
+}
+.hp35{
+    padding: 0px 35px;
+}
+.hp40{
+    padding: 0px 40px;
+}
+.hp45{
+    padding: 0px 45px;
+}
+.hp50{
+    padding: 0px 50px;
+}
+
 /**
  * MARGIN's
  */
@@ -567,6 +628,99 @@ img{
 .w400px{
     width: 400px;
 }
+.mw10p{
+    min-width: 10px;
+}
+.mw20p{
+    min-width: 20px;
+}
+.mw30p{
+    min-width: 30px;
+}
+.mw40p{
+    min-width: 40px;
+}
+.mw50p{
+    min-width: 50px;
+}
+.mw60p{
+    min-width: 60px;
+}
+.mw70p{
+    min-width: 70px;
+}
+.mw80p{
+    min-width: 80px;
+}
+.mw90p{
+    min-width: 90px;
+}
+.mw100p{
+    min-width: 100px;
+}
+.Mw10p{
+    max-width: 10px;
+}
+.Mw20p{
+    max-width: 20px;
+}
+.Mw30p{
+    max-width: 30px;
+}
+.Mw40p{
+    max-width: 40px;
+}
+.Mw50p{
+    max-width: 50px;
+}
+.Mw60p{
+    max-width: 60px;
+}
+.Mw70p{
+    max-width: 70px;
+}
+.Mw80p{
+    max-width: 80px;
+}
+.Mw90p{
+    max-width: 90px;
+}
+.Mw100p{
+    max-width: 100px;
+}
+/**
+ * BORDERS
+ */
+.b1{
+    border: solid 1px;
+}
+.b2{
+    border: solid 2px;
+}
+.b3{
+    border: solid 3px;
+}
+.b5{
+    border: solid 5px;
+}
+.b6{
+    border: solid 6px;
+}
+.b7{
+    border: solid 7px;
+}
+.b8{
+    border: solid 8px;
+}
+.b9{
+    border: solid 9px;
+}
+.b10{
+    border: solid 10px;
+}
+.b11{
+    border: solid 11px;
+}
 /**
  * ORIENTACION
  */
@@ -656,6 +810,12 @@ img{
 }
 .index190{
     z-index: 190;
+}
+/**
+ * OVERFLOW
+ */
+.overflow-auto{
+    overflow: auto;
 }
 /**
  * FLEX
