@@ -14,6 +14,11 @@
     --black0A: #0A0A0A;
     --negro: rgb(43,43,43);
     --plomo-transparente: rgba(128, 128, 128, 0.367);
+    --verde: #00FF66;
+    --verde-transparente: #00ff6695;
+    --amarillo: #FFC700;
+    --rojo: #FF5353;
+    --azul: #00A3FF;
 }
 /**
  * DASHBORADS
@@ -63,10 +68,30 @@ main{
 }
 .bg-purple-black{
     background-color: var(--purple-black);
+    color: white;
+}
+.bg-purple-strong{
+    background-color: var(--purple-strong);
+    color: white;
+}
+.bg-red{
+    background-color: var(--rojo);
+    color: white;
 }
 .bg-green{
-    background-color: rgb(22, 144, 61);
+    background-color: var(--verde);
+    color: black;
+}
+.opacity05{
+    opacity: 0.5;
+}
+.bg-blue{
+    background-color: var(--azul);
     color: white;
+}
+.bg-yellow{
+    background-color: var(--amarillo);
+    color: black;
 }
 .bg-purple{
     background-color: var(--purple);
@@ -104,35 +129,6 @@ img{
     visibility: hidden;
     position: absolute;
 }
-/* .user-options{
-    transition: .5s;
-    height: 0px;
-    background-color: var(--purple);
-    color: white;
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    right: 0px;
-    overflow: hidden;
-}
-.user-options > a{
-    color: white;
-    text-decoration: none;
-}
-.user-box:hover{
-    transition: .2s;
-    background-color: white;
-    color: black;
-}
-.user-name{
-    border-right: 1px solid var(--plomo-transparente);
-    flex: 1;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-.user-pic{
-    cursor: pointer;
-} */
 /**
  * ========= FIN DE OPCIONES DE USUARIOS =========
  */
@@ -141,6 +137,10 @@ img{
 }
 .absolute{
     position: absolute;
+}
+.sticky{
+    position: sticky;
+    top: 0%;
 }
 /**
  * SELECT
@@ -384,6 +384,9 @@ img{
 /**
  * BORDER RADIUS - PIXEL's
  */
+.br5{
+    border-radius: 5px;
+}
 .br7{
     border-radius: 7px;
 }
@@ -441,6 +444,15 @@ img{
 .minus{
     text-transform: lowercase;
 }
+.space-nw{
+    white-space: nowrap;
+}
+.negrita{
+    font-weight: bold;
+}
+.negrota{
+    font-weight: bolder;
+}
 /**
  * FONT SIZE's
  */
@@ -461,6 +473,21 @@ img{
 }
 .fz30{
     font-size: 30px;
+}
+.fz40{
+    font-size: 40px;
+}
+.fz50{
+    font-size: 50px;
+}
+.fz60{
+    font-size: 60px;
+}
+.fz70{
+    font-size: 70px;
+}
+.fz80{
+    font-size: 80px;
 }
 /**
  * BOX SHADOW's
@@ -531,6 +558,9 @@ img{
 }
 .min-content-h{
     height: min-content;
+}
+.h100vh{
+    height: 100vh;
 }
 .h100p{
     height: 100%;
@@ -784,6 +814,69 @@ img{
 .top100{
     top: 100px;
 }
+.bot0{
+    bottom: 0px;
+}
+.bot10{
+    bottom: 10px;
+}
+.bot15{
+    bottom: 15px;
+}
+.bot20{
+    bottom: 20px;
+}
+.bot25{
+    bottom: 25px;
+}
+.bot30{
+    bottom: 30px;
+}
+.bot35{
+    bottom: 35px;
+}
+.bot40{
+    bottom: 40px;
+}
+.bot45{
+    bottom: 45px;
+}
+.bot50{
+    bottom: 50px;
+}
+.bot55{
+    bottom: 55px;
+}
+.bot60{
+    bottom: 60px;
+}
+.bot65{
+    bottom: 65px;
+}
+.bot70{
+    bottom: 70px;
+}
+.bot75{
+    bottom: 75px;
+}
+.bot80{
+    bottom: 80px;
+}
+.bot85{
+    bottom: 85px;
+}
+.bot90{
+    bottom: 90px;
+}
+.bot95{
+    bottom: 95px;
+}
+.bot100{
+    bottom: 100px;
+}
+.bot100p{
+    bottom: 100%;
+}
 /**
  * Z-INDEX
  */
@@ -817,6 +910,9 @@ img{
 .overflow-auto{
     overflow: auto;
 }
+.overflow-hidden{
+    overflow: hidden;
+}
 /**
  * FLEX
  */
@@ -828,15 +924,27 @@ img{
     display: flex;
 }
 .a-c{
-    display: flex;
     align-items: center;
 }
 .jc-c{
     justify-content: center;
 }
+.jc-a{
+    justify-content: space-around;
+}
 .jc-b{
     justify-content: space-between;
 }
+.jc-e{
+    justify-content: space-evenly;
+}
+.wrap{
+    flex-wrap: wrap;
+}
+.nowrap{
+    flex-wrap: nowrap;
+}
+
 .self-end{
     align-self: flex-end;
 }
@@ -844,6 +952,9 @@ img{
     display: flex;
     flex: 1;
 }
+/**
+ * GAP'S
+ */
 .gap5{
     gap: 5px;
 }

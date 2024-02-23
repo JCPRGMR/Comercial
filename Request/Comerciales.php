@@ -15,3 +15,5 @@
         print_r($post);
         Comerciales::Insertar($post);
     }
+
+    ($post->ocultar) && Comerciales::Ocultar($post);

@@ -3,7 +3,7 @@
     class Comerciales extends Conexion{
         public static function Mostrar(){
             try {
-                $sql = "SELECT * FROM vista_comerciales ORDER BY alter_comercial DESC";
+                $sql = "SELECT * FROM vista_comerciales WHERE estado_comercial = 1 ORDER BY alter_comercial DESC";
                 $stmt = Conexion::Conectar()->prepare($sql);
                 $stmt->execute();
                 $comerciales = $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -21,9 +21,11 @@
                     pases,
                     f_registro_comercial,
                     h_registro_comercial,
-                    alter_comercial
-                ) VALUES(?,?,?,?, ?,?,?)";
+                    alter_comercial,
+                    estado_comercial
+                ) VALUES(?,?,?,?, ?,?,?, ?)";
                 $stmt = Conexion::Conectar()->prepare($sql);
+                $estado = 1;
                 $stmt->bindParam(1, $post->programa, PDO::PARAM_INT);
                 $stmt->bindParam(2, $post->cliente, PDO::PARAM_INT);
                 $stmt->bindParam(3, $post->tipo, PDO::PARAM_INT);
@@ -31,10 +33,24 @@
                 $stmt->bindParam(5, Conexion::$f_registro, PDO::PARAM_STR);
                 $stmt->bindParam(6, Conexion::$h_registro, PDO::PARAM_STR);
                 $stmt->bindParam(7, Conexion::$alter, PDO::PARAM_STR);
+                $stmt->bindParam(8, $estado, PDO::PARAM_INT);
                 $stmt->execute();
                 // echo 'Comercial programado correctamente';
                 header("Location: ../view/index.php");
             } catch (PDOException $th) {
+                throw $th;
+            }
+        }
+        public static function Ocultar($post){
+            try {
+                $sql = "UPDATE comerciales SET estado_comercial = 0 WHERE id_comercial = ?";
+                $stmt = Conexion::Conectar()->prepare($sql);
+                $stmt->bindParam(1, $post->ocultar, PDO::PARAM_INT);
+                $stmt->execute();
+                header("Location: ../view/index.php");
+            } catch (PDOException $th) {
+                echo '<pre>';
+                var_dump($post);
                 throw $th;
             }
         }
