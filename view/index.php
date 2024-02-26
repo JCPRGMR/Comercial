@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../css/index1.css">
-    <link rel="stylesheet" href="../css/style6.css">
+    <link rel="stylesheet" href="../css/style7.css">
     <title>Document</title>
 </head>
 <body class="overflow-auto h100vh">
@@ -61,7 +61,7 @@
     </header>
     <main class="tabla h100vh overflow-hidden relative">
         <div class="container space-nw overflow-auto relative">
-            <table class="tabla-comerciales w100p relative">
+            <table class="tabla-comerciales w100p relative h100p index110">
                 <thead class="bg-black sticky">
                     <th class="p5 mayus">Clientes</th>
                     <th class="p5 mayus">Programa</th>
@@ -79,6 +79,16 @@
                     <?php foreach(Comerciales::Mostrar() as $item):?>
                     <tr class="b1">
                         <td class="b1">
+                            <input type="radio" class="item-radio" name="cliente_table" id="radio-cliente">
+                            <input type="search" class="w100p fz15 p10 b-shadow-5-1-gray" name="" readonly id="cliente" placeholder="Cliente..." autocomplete="off" value="<?= $item->des_cliente ?>">
+                            <div class="options index190 b-shadow-5-1-black w200px top40 Mh100px br10 bg-white" id="selectcliente">
+                                <div class="option">
+                                    <?php foreach(Clientes::Mostrar() as $item2):?>
+                                    <input type="radio" class="item-radio programa-radio" name="cliente_table" id="<?= $item2->id_cliente?>">
+                                    <label for="<?= $item2->id_cliente?>" onclick="ValueOfLabel_cliente('<?= $item2->des_cliente?>')" class="opt p10 pointer"><?= $item2->des_cliente?></label>
+                                    <?php endforeach;?>
+                                </div>
+                            </div>
                             <?= $item->des_cliente ?>
                         </td>
                         <td class="b1">
@@ -135,7 +145,7 @@
                     </tr>
                     <?php endforeach;?>
                 </tbody>
-                <tfoot class="bg-black sticky">
+                <!-- <tfoot class="bg-black sticky">
                     <th class="p5 mayus">Clientes</th>
                     <th class="p5 mayus">Programa</th>
                     <th class="p5 mayus">Tipo</th>
@@ -147,7 +157,7 @@
                         </svg>
                     </th>
                     <th class="p5 mayus w100px">Opciones</th>
-                </tfoot>
+                </tfoot> -->
             </table>
         </div>
     </main>

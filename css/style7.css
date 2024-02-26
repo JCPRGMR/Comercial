@@ -880,6 +880,12 @@ img{
 /**
  * Z-INDEX
  */
+.index100{
+    z-index: 100;
+}
+.index110{
+    z-index: 110;
+}
 .index120{
     z-index: 120;
 }
@@ -903,6 +909,36 @@ img{
 }
 .index190{
     z-index: 190;
+}
+.index200{
+    z-index: 200;
+}
+.index210{
+    z-index: 210;
+}
+.index220{
+    z-index: 220;
+}
+.index230{
+    z-index: 230;
+}
+.index240{
+    z-index: 240;
+}
+.index250{
+    z-index: 250;
+}
+.index260{
+    z-index: 260;
+}
+.index270{
+    z-index: 270;
+}
+.index280{
+    z-index: 280;
+}
+.index290{
+    z-index: 290;
 }
 /**
  * OVERFLOW
