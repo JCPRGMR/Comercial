@@ -21,7 +21,7 @@ main{
 td{
     overflow: hidden;
 }
-input{
+.entrada{
     color: rgb(0, 157, 89);
 }
 input:focus{
