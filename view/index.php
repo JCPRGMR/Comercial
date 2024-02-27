@@ -1,14 +1,6 @@
 <?php include_once("../Response/Comerciales.php")?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+<?php include_once("../templates/header.php")?>
     <link rel="stylesheet" href="../css/Comercial.css">
-    <link rel="stylesheet" href="../css/index1.css">
-    <link rel="stylesheet" href="../css/style9.css">
-    <title>Document</title>
-</head>
-<body class="overflow-auto h100vh" id="body">
     <div class="w100p h100p bg-blackt absolute index100 f-col jc-c a-c v-hidden" id="modalFather">XD</div>
     <header class="bg-black p5 mayus">
         <h1 id="prueba">Comercial</h1>
@@ -26,7 +18,7 @@
                 </div>
             </div>
         </div>
-        <div class="caja2 flex-1 relative f-col">
+        <div class="caja2 flex-1 relative f-row">
             <input type="radio" name="id_programa" id="radio-programa" class="item-radio">
             <input type="search" class="<?= (isset($_GET['editar']) && !is_null($id_comercial->des_programa)) ? 'negrota bg-purple' : 'entrada'; ?> w100p fz15 select p10 b-shadow-5-1-gray" name="programa" id="programa" placeholder="Programa..." autocomplete="off" <?= (isset($_GET['editar']) && is_null($id_comercial->des_programa)) ? 'autofocus' : ''; ?> value="<?= (isset($_GET['editar'])) ? $id_comercial->des_programa : ''; ?>">
             <div class="options index190 b-shadow-5-1-black w200px top40 Mh100px br10 bg-white" id="selectprograma">
@@ -37,6 +29,12 @@
                     <?php endforeach;?>
                 </div>
             </div>
+            <button type="submit" class="absolute top5 derecha25 bg-transparent pointer" name="nuevo_programa" id="nuevo_programa">
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
+                <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+                </svg>
+            </button>
         </div>
         <div class="caja3 flex-1 relative f-col">
             <input type="radio" name="id_tipo" id="radio-tipo" class="item-radio">
@@ -51,7 +49,7 @@
             </div>
         </div>
         <div class="caja4 flex-1 relative f-col">
-            <input type="search" class="w100p fz15 select p10 b-shadow-5-1-gray" name="pases" id="pases" placeholder="Pases..." autocomplete="off" required value="<?= (isset($_GET['editar'])) ? $id_comercial->pases : ''; ?>">
+            <input type="search" class="w100p fz15 select p10 b-shadow-5-1-gray" name="pases" id="pases" placeholder="Pases..." autocomplete="off"  value="<?= (isset($_GET['editar'])) ? $id_comercial->pases : ''; ?>">
         </div>
         <div class="btn">
             <button type="submit" class="p10 bg-purple mayus pointer negrita" name="<?= isset($_GET['editar'])? 'editar_comercial' : 'insertar_comercial' ?>" value="<?= (isset($_GET['editar'])) ? $id_comercial->id_comercial : '1';?>" id="insertar_comercial">
@@ -82,33 +80,35 @@
                         <td class="b1">
                             <?= $item->des_cliente ?>
                         </td>
-                        <td class="b1">
+                        <td class="b1 relative">
                             <?= $item->des_programa ?>
                         </td>
                         <td class="b1">
                             <?= $item->des_tipo ?>
                         </td>
-                        <td class="b1 negrita fz25">
-                            <?= Pases_historial::Pases_echos($item->id_comercial) ?>
-                            <?= '/ ' . $item->pases ?>
+                        <td class="negrita fz25 f-row jc-c a-c">
+                            <?php if($item->pases == 0): ?>
+                                <div class="blue">
+                                    <?= Pases_historial::Pases_echos($item->id_comercial) ?>
+                                </div>
+                            <?php else:?>
+                                <div class="blue">
+                                    <?= Pases_historial::Pases_echos($item->id_comercial) ?>
+                                </div>
+                                /
+                                <div class="">
+                                    <?= $item->pases ?>
+                                </div>
+                            <?php endif;?>
                         </td>
                         <td class="b1">
                             <form action="../Request/Pases_historial.php" method="post" class="">
-                                <?php if(Pases_historial::Pases_echos($item->id_comercial) != $item->pases):?>
                                 <button type="submit" class="bg-green p10 br5 pointer mayus" name="pases" value="<?= $item->id_comercial ?>">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
                                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
                                         <path d="m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05"/>
                                     </svg>
                                 </button>
-                                <?php else:?>
-                                <button type="submit" class="bg-green p10 br5 mayus opacity05" name="pases" disabled value="<?= $item->id_comercial ?>">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
-                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
-                                        <path d="m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05"/>
-                                    </svg>
-                                </button>
-                                <?php endif;?>
                             </form>
                         </td>
                         <td class="min-content-w f-row jc-c a-c gap5 overflow-auto">
@@ -122,7 +122,6 @@
                                 </button>
                             </form>
                             <form action="?editar=<?= $item->id_comercial?>" method="post">
-                            <!-- <form action="?editar=<?php #openssl_encrypt($item->id_comercial, 'AES-256-CBC', $key, 0, openssl_random_pseudo_bytes(16)) ?>" method="post"> -->
                                 <button type="submit">
                                     <div type="submit" class="bg-yellow p10 br5 pointer mayus fz15"  name="editar" value="<?= $item->id_comercial ?>">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
@@ -159,4 +158,4 @@
     </main>
 </body>
 </html>
-<script src="../js/script_prueba_2.js"></script>
+<script src="../js/script_prueba_3.js"></script>

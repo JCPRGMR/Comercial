@@ -1,0 +1,18 @@
+@import url('style10.css');
+.dia{
+}
+.dia_c:checked + label{
+    transition: .2s;
+    background-color: var(--purple);
+    color: white;
+}
+textarea{
+    resize: none;
+}
+.nombre{
+    box-sizing: border-box;
+}
+.Container{
+    background-color: var(--negro);
+    /* background-color: black; */
+}

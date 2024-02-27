@@ -29,12 +29,18 @@ function ModalComercial(element) {
                 if(response.readyState == 4 && response.status == 200){
                     var datos = JSON.parse(response.responseText)
                     cuerpo.innerHTML = /*html*/`
-                    <div class="bg-white">
-                        <label for="" id="cerrar_modal" class="pointer">Cerrar modal</label>
-                        <form action="" method="post">
+                    <div class="bg-white p10 br10 f-col">
+                        <header class="f-row jc-b bg-black p10 negrita a-c gap10">
+                            <div class="mayus fz20">
+                                Informacion del comercial...
+                            </div>
+                            <label for="" id="cerrar_modal" class="pointer bg-red p10 br10">X</label>
+                        </header>
+                        
+                        <!-- <form action="" method="post">
                             <input type="search" name="" id="" value="${datos.des_cliente}">
                             <button type="submit">Enviar</button>
-                        </form>
+                        </form> -->
                     </div>
                     `
                 }
@@ -94,6 +100,46 @@ function filtrarOpciones(inputId, optionsContainerId) {
         })
     })
 }
+function filtrarPrograma(inputId, optionsContainerId) {
+    var input = document.getElementById(inputId);
+    var labels = document.querySelectorAll('#' + optionsContainerId + ' .option label');
+
+    input.addEventListener('input', function () {
+        var textoBusqueda = this.value.trim().toLowerCase();
+        labels.forEach(label => {
+            var labelTexto = label.textContent.toLowerCase();
+            var mostrar = false;
+
+            if (textoBusqueda.length === 0 || labelTexto.includes(textoBusqueda)) {
+                mostrar = true;
+            }
+
+            label.style.display = mostrar ? 'block' : 'none';
+        });
+
+        var algunaCoincidencia = Array.from(labels).some(label => label.style.display !== 'none');
+        var nuevo_programa = document.getElementById("nuevo_programa")
+        if (textoBusqueda.length > 0 && !algunaCoincidencia) {
+            nuevo_programa.innerHTML = /*html*/`
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
+                <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+            </svg>
+            <div class="absolute p10 bg-white w200px pointer">
+                Si desea crear un nuevo programa, haga clic en el icono de más
+            </div>
+            `;
+        }else if(textoBusqueda.length == 0 || algunaCoincidencia){
+            nuevo_programa.innerHTML = /*html*/`
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
+                <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+            </svg>`;
+        }
+    });
+}
+
+
 function ValueOfLabel_cliente(label) {
     var input = document.getElementById("cliente")
     input.value = label
@@ -107,8 +153,9 @@ function ValueOfLabel_tipo(label) {
     input.value = label
 }
 filtrarOpciones("cliente", "selectcliente")
-filtrarOpciones("programa", "selectprograma")
+filtrarPrograma("programa", "selectprograma")
 filtrarOpciones("tipo", "selecttipo")
+
 InputOnRadio("cliente", "radio-cliente")
 InputOnRadio("programa", "radio-programa")
 InputOnRadio("tipo", "radio-tipo")
