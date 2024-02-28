@@ -1,12 +1,16 @@
 <?php include_once("../Response/Comerciales.php")?>
 <?php include_once("../templates/header.php")?>
-    <link rel="stylesheet" href="../css/Comercial.css">
+    <link rel="stylesheet" href="../css/Comercial2.css">
     <div class="w100p h100p bg-blackt absolute index100 f-col jc-c a-c v-hidden" id="modalFather">XD</div>
     <header class="bg-black p5 mayus">
         <h1 id="prueba">Comercial</h1>
     </header>
-    <form action="../Request/Comerciales.php" method="post" class="f-row a-c" id="formulario_comercial">
-        <div class="caja1 flex-1 relative f-col">
+    <?php if(!isset($_GET['editar'])):?>
+        <label for="abrir_formulario" id="activar_formulario" class="p10 bg-purple pointer f-col jc-c a-c">Agregar comercial</label>
+    <?php endif;?>
+    <input type="checkbox" name="" id="abrir_formulario" <?= (isset($_GET['editar']))? 'checked' : ''?> >
+    <form action="../Request/Comerciales.php" method="post" class="f-row a-c wrap" id="formulario_comercial">
+        <div class="caja1 flex-1 relative f-row mw200p">
             <input type="radio" class="item-radio" name="id_cliente" id="radio-cliente">
             <input type="search" class="<?= (isset($_GET['editar']) && !is_null($id_comercial->des_cliente)) ? 'negrota bg-purple' : 'entrada'; ?> w100p fz15 select p10 b-shadow-5-1-gray" name="cliente" id="cliente" placeholder="Cliente..." <?= (isset($_GET['editar']) && is_null($id_comercial->des_cliente)) ? 'autofocus' : ''; ?> autocomplete="off" value="<?= (isset($_GET['editar'])) ? $id_comercial->des_cliente : ''; ?>">
             <div class="options index190 b-shadow-5-1-black w200px top40 Mh100px br10 bg-white" id="selectcliente">
@@ -18,25 +22,33 @@
                 </div>
             </div>
         </div>
-        <div class="caja2 flex-1 relative f-row">
+        <div class="caja2 flex-1 relative f-row mw200p">
             <input type="radio" name="id_programa" id="radio-programa" class="item-radio">
             <input type="search" class="<?= (isset($_GET['editar']) && !is_null($id_comercial->des_programa)) ? 'negrota bg-purple' : 'entrada'; ?> w100p fz15 select p10 b-shadow-5-1-gray" name="programa" id="programa" placeholder="Programa..." autocomplete="off" <?= (isset($_GET['editar']) && is_null($id_comercial->des_programa)) ? 'autofocus' : ''; ?> value="<?= (isset($_GET['editar'])) ? $id_comercial->des_programa : ''; ?>">
             <div class="options index190 b-shadow-5-1-black w200px top40 Mh100px br10 bg-white" id="selectprograma">
                 <div class="option">
                     <?php foreach(Programas::Mostrar() as $item):?>
                     <input type="radio" class="item-radio programa-radio" name="id_programa" id="<?= $item->id_programa?>">
-                    <label for="<?= $item->id_programa?>" onclick="ValueOfLabel_programa('<?= $item->des_programa?>')" class="opt p10 pointer"><?= $item->des_programa?></label>
+                    <label for="<?= $item->id_programa?>" onclick="ValueOfLabel_programa('<?= $item->des_programa?>')" class="opt p10 relative">
+                        <?= $item->des_programa?>
+                        <div class="absolute derecha15 f-row a-c jc-c h100p top0 pointer"  onclick="InfoPrograma(<?= $item->id_programa ?>)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+                            </svg>
+                        </div>
+                    </label>
                     <?php endforeach;?>
                 </div>
             </div>
-            <button type="submit" class="absolute top5 derecha25 bg-transparent pointer" name="nuevo_programa" id="nuevo_programa">
+            <button type="submit" class="absolute top0 p5 derecha25 bg-transparent pointer" name="nuevo_programa" id="nuevo_programa">
                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
                 <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
                 <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
                 </svg>
             </button>
         </div>
-        <div class="caja3 flex-1 relative f-col">
+        <div class="caja3 flex-1 relative f-row mw200p">
             <input type="radio" name="id_tipo" id="radio-tipo" class="item-radio">
             <input type="search" class="<?= (isset($_GET['editar']) && !is_null($id_comercial->des_tipo)) ? 'negrota bg-purple' : 'entrada'; ?> w100p fz15 select p10 b-shadow-5-1-gray" name="tipo" id="tipo" placeholder="Tipo..." autocomplete="off" <?= (isset($_GET['editar']) && is_null($id_comercial->des_tipo)) ? 'autofocus' : ''; ?> value="<?= (isset($_GET['editar'])) ? $id_comercial->des_tipo : ''; ?>">
             <div class="options index190 b-shadow-5-1-black w100px top40 Mh100px br10 bg-white" id="selecttipo">
@@ -48,21 +60,24 @@
                 </div>
             </div>
         </div>
-        <div class="caja4 flex-1 relative f-col">
+        <div class="caja4 flex-1 relative f-row mw200p">
             <input type="search" class="w100p fz15 select p10 b-shadow-5-1-gray" name="pases" id="pases" placeholder="Pases..." autocomplete="off"  value="<?= (isset($_GET['editar'])) ? $id_comercial->pases : ''; ?>">
         </div>
-        <div class="btn">
-            <button type="submit" class="p10 bg-purple mayus pointer negrita" name="<?= isset($_GET['editar'])? 'editar_comercial' : 'insertar_comercial' ?>" value="<?= (isset($_GET['editar'])) ? $id_comercial->id_comercial : '1';?>" id="insertar_comercial">
-                <?= isset($_GET['editar'])? 'Editar' : 'Enviar' ?>
+        <div class="btn flex-1 bg-black">
+            <button type="submit" class="w100p p10 bg-purple mayus pointer negrita" name="<?= isset($_GET['editar'])? 'editar_comercial' : 'insertar_comercial' ?>" value="<?= (isset($_GET['editar'])) ? $id_comercial->id_comercial : '1';?>" id="insertar_comercial">
+                <?= isset($_GET['editar'])? 'Editar' : 'Registrar' ?>
             </button>
+            <?php if(isset($_GET['editar'])):?>
+            <a href="index.php" class="p10 bg-red">Cancelar</a>
+            <?php endif;?>
         </div>
     </form>
     <header class="header-programado bg-black p10 f-row a-c jc-b wrap">
         <h3>Programado</h3>
         <input type="search" name="" id="buscadorProgramacion" class="p10 br50" placeholder="Buscardor">
     </header>
-    <main class="tabla h100vh overflow-hidden relative">
-        <div class="container space-nw overflow-auto relative">
+    <main class="tabla h100p overflow-auto relative">
+        <div class="container space-nw relative">
             <table class="tabla-comerciales w100p relative h100p">
                 <thead class="bg-black sticky">
                     <th class="p5 mayus">Clientes</th>
@@ -77,13 +92,13 @@
                 <tbody id="vista_comercial" class="">
                     <?php foreach(Comerciales::Mostrar() as $item):?>
                     <tr class="b1">
-                        <td class="b1">
+                        <td class="b1 hp10">
                             <?= $item->des_cliente ?>
                         </td>
-                        <td class="b1 relative">
+                        <td class="b1 hp10">
                             <?= $item->des_programa ?>
                         </td>
-                        <td class="b1">
+                        <td class="b1 hp10">
                             <?= $item->des_tipo ?>
                         </td>
                         <td class="negrita fz25 f-row jc-c a-c">
@@ -101,7 +116,7 @@
                                 </div>
                             <?php endif;?>
                         </td>
-                        <td class="b1">
+                        <td class="b1 hp10">
                             <form action="../Request/Pases_historial.php" method="post" class="">
                                 <button type="submit" class="bg-green p10 br5 pointer mayus" name="pases" value="<?= $item->id_comercial ?>">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
@@ -140,7 +155,7 @@
                     </tr>
                     <?php endforeach;?>
                 </tbody>
-                <!-- <tfoot class="bg-black sticky">
+                <tfoot class="bg-black sticky">
                     <th class="p5 mayus">Clientes</th>
                     <th class="p5 mayus">Programa</th>
                     <th class="p5 mayus">Tipo</th>
@@ -152,10 +167,10 @@
                         </svg>
                     </th>
                     <th class="p5 mayus w100px">Opciones</th>
-                </tfoot> -->
+                </tfoot>
             </table>
         </div>
     </main>
 </body>
 </html>
-<script src="../js/script_prueba_3.js"></script>
+<script src="../js/script_prueba_4.js"></script>

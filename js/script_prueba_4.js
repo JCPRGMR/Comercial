@@ -1,4 +1,13 @@
 // alert('XD')
+filtrarPrograma("programa", "selectprograma")
+cargarValorDesdeLocalStorage("cliente")
+cargarValorDesdeLocalStorage("programa")
+cargarValorDesdeLocalStorage("tipo")
+cargarValorDesdeLocalStorage("pases")
+DateVerified("cliente")
+DateVerified("programa")
+DateVerified("tipo")
+DateVerified("pases")
 var milisegundos = Date.now()
 console.log("Milisegundos desde el inicio de la época:", milisegundos)
 document.getElementById('buscadorProgramacion').addEventListener('input', function () {
@@ -17,6 +26,33 @@ document.getElementById('buscadorProgramacion').addEventListener('input', functi
         }
     })
 })
+function DateVerified(input){
+    var input = document.getElementById(input)
+    if(input.value.length > 0){
+        input.style.backgroundColor = "#00ff6695"
+    }else{
+        input.style.backgroundColor = "#ffffff"
+    }
+    input.addEventListener('input', function(){
+        if(input.value.length > 0){
+            input.style.backgroundColor = "#00ff6695"
+        }else{
+            input.style.backgroundColor = "#ffffff"
+        }
+    });
+}
+function cargarValorDesdeLocalStorage(inputId) {
+    const input = document.getElementById(inputId);
+    const storedValue = localStorage.getItem(inputId + 'Value');
+    if (storedValue) {
+        input.value = storedValue;
+    }
+    // Escuchar cambios en el input y almacenar el valor en localStorage
+    input.addEventListener('input', function () {
+        const inputValue = input.value;
+        localStorage.setItem(inputId + 'Value', inputValue);
+    });
+}
 // var padre = document.getElementById('body')
 function ModalComercial(element) {
     var id_comercial = element.value;
@@ -36,11 +72,6 @@ function ModalComercial(element) {
                             </div>
                             <label for="" id="cerrar_modal" class="pointer bg-red p10 br10">X</label>
                         </header>
-                        
-                        <!-- <form action="" method="post">
-                            <input type="search" name="" id="" value="${datos.des_cliente}">
-                            <button type="submit">Enviar</button>
-                        </form> -->
                     </div>
                     `
                 }
@@ -57,10 +88,30 @@ function ModalComercial(element) {
     } catch (error) {
         console.log(error)
     }
-
     var cuerpo = document.getElementById("modalFather")
     cuerpo.style.visibility = 'visible'
-    
+}
+function InformacionPrograma(id){
+    try {
+        var response = new XMLHttpRequest()
+        response.open("POST", "../Json/Programas.php", true)
+        response.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
+        try {
+            response.onreadystatechange = function(){
+                if(response.readyState == 4 ** response.status == 200){
+                    var datos = JSON.parse(response.responseText)
+                    console.log(datos)
+                }
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
+function InfoPrograma(id){
+    alert(id)
 }
 function Ocultar(){
     var Ocultar = document.getElementById("ocultar")
@@ -120,13 +171,18 @@ function filtrarPrograma(inputId, optionsContainerId) {
         var algunaCoincidencia = Array.from(labels).some(label => label.style.display !== 'none');
         var nuevo_programa = document.getElementById("nuevo_programa")
         if (textoBusqueda.length > 0 && !algunaCoincidencia) {
+            // nuevo_programa.style.color = "#0010ff"
             nuevo_programa.innerHTML = /*html*/`
             <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
                 <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
                 <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
             </svg>
-            <div class="absolute p10 bg-white w200px pointer">
+            <div class="absolute p10 bg-white w200px pointer br30">
                 Si desea crear un nuevo programa, haga clic en el icono de más
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
+                    <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+                </svg>
             </div>
             `;
         }else if(textoBusqueda.length == 0 || algunaCoincidencia){
@@ -153,7 +209,6 @@ function ValueOfLabel_tipo(label) {
     input.value = label
 }
 filtrarOpciones("cliente", "selectcliente")
-filtrarPrograma("programa", "selectprograma")
 filtrarOpciones("tipo", "selecttipo")
 
 InputOnRadio("cliente", "radio-cliente")

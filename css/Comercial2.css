@@ -1,0 +1,22 @@
+#abrir_formulario{
+    visibility: hidden;
+    position: absolute;
+}
+#activar_formulario{
+    visibility: hidden;
+    position: absolute;
+}
+@media (width < 900px) {
+    #activar_formulario{
+        visibility: visible;
+        position: relative;
+    }
+    #formulario_comercial{
+        position: absolute;
+        visibility: hidden;
+    }
+    #abrir_formulario:checked + #formulario_comercial{
+        position: relative;
+        visibility: visible;
+    }
+}

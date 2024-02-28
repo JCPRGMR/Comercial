@@ -21,6 +21,18 @@
     --rojo: #FF5353;
     --azul: #00A3FF;
 }
+.overflow-auto::-webkit-scrollbar{
+    background-color: transparent;
+    max-width: 7px;
+    max-height: 10px;
+}
+.overflow-auto::-webkit-scrollbar-thumb{
+    background-color: var(--purple);
+}
+.overflow-auto::-webkit-scrollbar-button{
+    width: 0px;
+    height: 0px;
+}
 /**
  * DASHBORADS
  */
@@ -706,6 +718,9 @@ img{
 .w400px{
     width: 400px;
 }
+/**
+ * MIN WIDTH
+ */
 .mw10p{
     min-width: 10px;
 }
@@ -736,6 +751,30 @@ img{
 .mw100p{
     min-width: 100px;
 }
+.mw200p{
+    min-width: 200px;
+}
+.mw300p{
+    min-width: 300px;
+}
+.mw400p{
+    min-width: 400px;
+}
+.mw500p{
+    min-width: 500px;
+}
+.mw600p{
+    min-width: 600px;
+}
+.mw700p{
+    min-width: 700px;
+}
+.mw800p{
+    min-width: 800px;
+}
+/**
+ * MAX WIDTH
+ */
 .Mw10p{
     max-width: 10px;
 }
@@ -765,6 +804,27 @@ img{
 }
 .Mw100p{
     max-width: 100px;
+}
+.Mw200p{
+    max-width: 200px;
+}
+.Mw300p{
+    max-width: 300px;
+}
+.Mw400p{
+    max-width: 400px;
+}
+.Mw500p{
+    max-width: 500px;
+}
+.Mw600p{
+    max-width: 600px;
+}
+.Mw700p{
+    max-width: 700px;
+}
+.Mw800p{
+    max-width: 800px;
 }
 /**
  * BORDERS
@@ -1362,6 +1422,18 @@ img{
 }
 .overflow-hidden{
     overflow: hidden;
+}
+.scroll-x{
+    overflow-x: scroll;
+}
+.scroll-y{
+    overflow-y: scroll;
+}
+.auto-x{
+    overflow-x: auto;
+}
+.auto-y{
+    overflow-y: auto;
 }
 /**
  * FLEX

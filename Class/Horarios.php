@@ -3,7 +3,7 @@
     class Horarios extends Conexion{
         public static function Insertar($post){
             try {
-                $sql = "INSERT INTO(
+                $sql = "INSERT INTO horarios(
                     id_fk_programa,
                     dia_semana,
                     h_inicio,
@@ -12,7 +12,7 @@
                     f_registro_horario,
                     h_registro_horario,
                     alter_horario
-                ) horarios VALUES(?,?,?,?, ?,?,?)";
+                ) VALUES(?,?,?,?, ?,?,?)";
                 $stmt = Conexion::Conectar()->prepare($sql);
                 $stmt->bindParam(1, $post->id_programa, PDO::PARAM_INT);
                 $stmt->bindParam(2, $post->dia, PDO::PARAM_STR);

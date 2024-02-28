@@ -51,5 +51,17 @@
                 throw $th;
             }
         }
+        public static function Buscar_x_id($id){
+            try {
+                $sql = "SELECT * FROM vista_programa WHERE id_programa = ?";
+                $stmt = Conexion::Conectar()->prepare($sql);
+                $stmt->bindParam(1, $id, PDO::PARAM_INT);
+                $stmt->execute();
+                $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+                return $resultado;
+            } catch (PDOException $th) {
+                throw $th;
+            }
+        }
         
     }   

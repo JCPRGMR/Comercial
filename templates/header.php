@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/index1.css">
-    <link rel="stylesheet" href="../css/style10.css">
+    <link rel="stylesheet" href="../css/style12.css">
     <title>Document</title>
 </head>
-<body class="overflow-auto h100vh" id="body">
+<body class="h100vh" id="body">

@@ -4,13 +4,16 @@
 
     if(isset($post->nuevo)){
         Programas::Insertar($post);
-        $id = (object) Programas::Existe_id($post);
-        
-        $nuevo_programa = (object)[
-            "id_programa" => $id
-        ];
+        $id = Programas::Existe_id($post);
+        $new_array = array("id_programa" => $id);
+        $post = (object) ($_POST + $new_array);
+        foreach ($post->dia as $key) {
+            $post->dia = $key;
+            Horarios::Insertar($post);
+        }
 
         echo '<pre>';
-        $post = (object) array_merge((array) $post, (array) $nuevo_programa);
         var_dump($post);
+        header("Location: ../view/index.php");
     }
+    
