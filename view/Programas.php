@@ -62,7 +62,7 @@
                 <input type="time" name="h_fin" id="h_fin" class="b-shadow-5-1-gray p10 br7" value="<?= date('H:i', strtotime('+1 hour')) ?>">
             </div>
         </div>
-        <button type="submit" class="bg-purple p15 mayus negrita pointer" name="nuevo" id="enviar" value="" onclick="localStorage.clear();">GUARDAR</button>
+        <button type="submit" class="bg-purple p15 mayus negrita pointer" name="nuevo" id="enviar" value="">GUARDAR</button>
     </form>
 </div>
 <script>

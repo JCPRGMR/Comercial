@@ -9,34 +9,16 @@
         <label for="abrir_formulario" id="activar_formulario" class="p10 bg-purple pointer f-col jc-c a-c">Agregar comercial</label>
     <?php endif;?>
     <input type="checkbox" name="" id="abrir_formulario" <?= (isset($_GET['editar']))? 'checked' : ''?> >
-    <form action="../Request/Comerciales.php" method="post" class="f-row a-c wrap" id="formulario_comercial">
-        <div class="caja1 flex-1 relative f-row mw200p">
-            <input type="radio" class="item-radio" name="id_cliente" id="radio-cliente">
-            <input type="search" class="<?= (isset($_GET['editar']) && !is_null($id_comercial->des_cliente)) ? 'negrota bg-purple' : 'entrada'; ?> w100p fz15 select p10 b-shadow-5-1-gray" name="cliente" id="cliente" placeholder="Cliente..." <?= (isset($_GET['editar']) && is_null($id_comercial->des_cliente)) ? 'autofocus' : ''; ?> autocomplete="off" value="<?= (isset($_GET['editar'])) ? $id_comercial->des_cliente : ''; ?>">
-            <div class="options index190 b-shadow-5-1-black w200px top40 Mh100px br10 bg-white" id="selectcliente">
-                <div class="option">
-                    <?php foreach(Clientes::Mostrar() as $item):?>
-                    <input type="radio" class="item-radio programa-radio" name="id_cliente" id="<?= $item->id_cliente?>">
-                    <label for="<?= $item->id_cliente?>" onclick="ValueOfLabel_cliente('<?= $item->des_cliente?>')" class="opt p10 pointer"><?= $item->des_cliente?></label>
-                    <?php endforeach;?>
-                </div>
-            </div>
-        </div>
-        <div class="caja2 flex-1 relative f-row mw200p">
+    <form action="../Request/Comerciales.php" method="post" class="f-col a-c wrap" id="formulario_comercial">
+        <div class="caja2 flex-1 relative f-row w100p">
             <input type="radio" name="id_programa" id="radio-programa" class="item-radio">
-            <input type="search" class="<?= (isset($_GET['editar']) && !is_null($id_comercial->des_programa)) ? 'negrota bg-purple' : 'entrada'; ?> w100p fz15 select p10 b-shadow-5-1-gray" name="programa" id="programa" placeholder="Programa..." autocomplete="off" <?= (isset($_GET['editar']) && is_null($id_comercial->des_programa)) ? 'autofocus' : ''; ?> value="<?= (isset($_GET['editar'])) ? $id_comercial->des_programa : ''; ?>">
+            <input type="search" style="text-align: center;" class="fz20 <?= (isset($_GET['editar']) && !is_null($id_comercial->des_programa)) ? 'negrota bg-purple' : 'negrota'; ?> w100p fz15 select p10 b-shadow-5-1-gray" name="programa" id="programa" placeholder="Programa..." autocomplete="off" <?= (isset($_GET['editar']) && is_null($id_comercial->des_programa)) ? 'autofocus' : ''; ?> value="<?= (isset($_GET['editar'])) ? $id_comercial->des_programa : ''; ?>">
             <div class="options index190 b-shadow-5-1-black w200px top40 Mh100px br10 bg-white" id="selectprograma">
                 <div class="option">
                     <?php foreach(Programas::Mostrar() as $item):?>
                     <input type="radio" class="item-radio programa-radio" name="id_programa" id="<?= $item->id_programa?>">
                     <label for="<?= $item->id_programa?>" onclick="ValueOfLabel_programa('<?= $item->des_programa?>')" class="opt p10 relative">
                         <?= $item->des_programa?>
-                        <div class="absolute derecha15 f-row a-c jc-c h100p top0 pointer"  onclick="InfoPrograma(<?= $item->id_programa ?>)">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
-                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
-                                <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
-                            </svg>
-                        </div>
                     </label>
                     <?php endforeach;?>
                 </div>
@@ -48,28 +30,42 @@
                 </svg>
             </button>
         </div>
-        <div class="caja3 flex-1 relative f-row mw200p">
-            <input type="radio" name="id_tipo" id="radio-tipo" class="item-radio">
-            <input type="search" class="<?= (isset($_GET['editar']) && !is_null($id_comercial->des_tipo)) ? 'negrota bg-purple' : 'entrada'; ?> w100p fz15 select p10 b-shadow-5-1-gray" name="tipo" id="tipo" placeholder="Tipo..." autocomplete="off" <?= (isset($_GET['editar']) && is_null($id_comercial->des_tipo)) ? 'autofocus' : ''; ?> value="<?= (isset($_GET['editar'])) ? $id_comercial->des_tipo : ''; ?>">
-            <div class="options index190 b-shadow-5-1-black w100px top40 Mh100px br10 bg-white" id="selecttipo">
-                <div class="option">
-                    <?php foreach(Tipos::Mostrar() as $item):?>
-                    <input type="radio" class="item-radio programa-radio" name="id_tipo" id="<?= $item->id_tipo?>">
-                    <label for="<?= $item->id_tipo?>" onclick="ValueOfLabel_tipo('<?= $item->des_tipo?>')" class="opt p10 pointer"><?= $item->des_tipo?></label>
-                    <?php endforeach;?>
+        <div class="w100p f-row wrap">
+            <div class="caja1 flex-1 relative f-row mw200p">
+                <input type="radio" class="item-radio" name="id_cliente" id="radio-cliente">
+                <input type="search" class="<?= (isset($_GET['editar']) && !is_null($id_comercial->des_cliente)) ? 'negrota bg-purple' : 'entrada'; ?> w100p fz15 select p10 b-shadow-5-1-gray" name="cliente" id="cliente" placeholder="Cliente..." <?= (isset($_GET['editar']) && is_null($id_comercial->des_cliente)) ? 'autofocus' : ''; ?> autocomplete="off" value="<?= (isset($_GET['editar'])) ? $id_comercial->des_cliente : ''; ?>">
+                <div class="options index190 b-shadow-5-1-black w200px top40 Mh100px br10 bg-white" id="selectcliente">
+                    <div class="option">
+                        <?php foreach(Clientes::Mostrar() as $item):?>
+                        <input type="radio" class="item-radio programa-radio" name="id_cliente" id="<?= $item->id_cliente?>">
+                        <label for="<?= $item->id_cliente?>" onclick="ValueOfLabel_cliente('<?= $item->des_cliente?>')" class="opt p10 pointer"><?= $item->des_cliente?></label>
+                        <?php endforeach;?>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="caja4 flex-1 relative f-row mw200p">
-            <input type="search" class="w100p fz15 select p10 b-shadow-5-1-gray" name="pases" id="pases" placeholder="Pases..." autocomplete="off"  value="<?= (isset($_GET['editar'])) ? $id_comercial->pases : ''; ?>">
-        </div>
-        <div class="btn flex-1 bg-black">
-            <button type="submit" class="w100p p10 bg-purple mayus pointer negrita" name="<?= isset($_GET['editar'])? 'editar_comercial' : 'insertar_comercial' ?>" value="<?= (isset($_GET['editar'])) ? $id_comercial->id_comercial : '1';?>" id="insertar_comercial">
-                <?= isset($_GET['editar'])? 'Editar' : 'Registrar' ?>
-            </button>
-            <?php if(isset($_GET['editar'])):?>
-            <a href="index.php" class="p10 bg-red">Cancelar</a>
-            <?php endif;?>
+            <div class="caja3 flex-1 relative f-row mw200p">
+                <input type="radio" name="id_tipo" id="radio-tipo" class="item-radio">
+                <input type="search" class="<?= (isset($_GET['editar']) && !is_null($id_comercial->des_tipo)) ? 'negrota bg-purple' : 'entrada'; ?> w100p fz15 select p10 b-shadow-5-1-gray" name="tipo" id="tipo" placeholder="Tipo..." autocomplete="off" <?= (isset($_GET['editar']) && is_null($id_comercial->des_tipo)) ? 'autofocus' : ''; ?> value="<?= (isset($_GET['editar'])) ? $id_comercial->des_tipo : ''; ?>">
+                <div class="options index190 b-shadow-5-1-black w100px top40 Mh100px br10 bg-white" id="selecttipo">
+                    <div class="option">
+                        <?php foreach(Tipos::Mostrar() as $item):?>
+                        <input type="radio" class="item-radio programa-radio" name="id_tipo" id="<?= $item->id_tipo?>">
+                        <label for="<?= $item->id_tipo?>" onclick="ValueOfLabel_tipo('<?= $item->des_tipo?>')" class="opt p10 pointer"><?= $item->des_tipo?></label>
+                        <?php endforeach;?>
+                    </div>
+                </div>
+            </div>
+            <div class="caja4 flex-1 relative f-row mw200p">
+                <input type="search" class="w100p fz15 select p10 b-shadow-5-1-gray" name="pases" id="pases" placeholder="Pases..." autocomplete="off"  value="<?= (isset($_GET['editar'])) ? $id_comercial->pases : ''; ?>">
+            </div>
+            <div class="btn flex-1 bg-black">
+                <button type="submit" class="w100p p10 bg-purple mayus pointer negrita" onclick="localStorage.clear();" name="<?= isset($_GET['editar'])? 'editar_comercial' : 'insertar_comercial' ?>" value="<?= (isset($_GET['editar'])) ? $id_comercial->id_comercial : '1';?>" id="insertar_comercial">
+                    <?= isset($_GET['editar'])? 'Guardar' : 'Registrar' ?>
+                </button>
+                <?php if(isset($_GET['editar'])):?>
+                <a href="index.php" class="p10 bg-red">Cancelar</a>
+                <?php endif;?>
+            </div>
         </div>
     </form>
     <header class="header-programado bg-black p10 f-row a-c jc-b wrap">
@@ -124,15 +120,21 @@
                                         <path d="m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05"/>
                                     </svg>
                                 </button>
+                                <button type="submit" class="bg-red p10 br5 pointer mayus" name="pases" value="<?= $item->id_comercial ?>">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                        <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8"/>
+                                    </svg>
+                                </button>
+                                
                             </form>
                         </td>
-                        <td class="min-content-w f-row jc-c a-c gap5 overflow-auto">
+                        <td class="f-row overflow-auto jc-c a-c">
                             <form action="../Request/Comerciales.php" method="post">
-                                <button type="submit" class="bg-black p10 br5 pointer mayus"  name="ocultar" value="<?= $item->id_comercial ?>" id="ocultar">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-slash" viewBox="0 0 16 16">
-                                        <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7 7 0 0 0-2.79.588l.77.771A6 6 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755q-.247.248-.517.486z"/>
-                                        <path d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829"/>
-                                        <path d="M3.35 5.47q-.27.24-.518.487A13 13 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7 7 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12z"/>
+                                <button type="submit" class="bg-red p10 br5 pointer mayus"  name="ocultar" value="<?= $item->id_comercial ?>" id="ocultar">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
                                     </svg>
                                 </button>
                             </form>
@@ -145,12 +147,6 @@
                                     </div>
                                 </button>
                             </form>
-                            <button class="bg-blue p10 br5 pointer mayus" name="informacion" value="<?= $item->id_comercial ?>" onclick="ModalComercial(this)">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
-                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
-                                    <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
-                                </svg>
-                            </button>
                         </td>
                     </tr>
                     <?php endforeach;?>
@@ -173,4 +169,4 @@
     </main>
 </body>
 </html>
-<script src="../js/script_prueba_5.js"></script>
+<script src="../js/script_prueba_7.js"></script>

@@ -18,7 +18,7 @@
     --verde: #00FF66;
     --verde-transparente: #00ff6695;
     --amarillo: #FFC700;
-    --rojo: #FF5353;
+    --rojo: #ff2c2c;
     --azul: #00A3FF;
 }
 .overflow-auto::-webkit-scrollbar{
@@ -1072,6 +1072,18 @@ img{
 .derecha100{
     right: 100px;
 }
+.derecha200{
+    right: 200px;
+}
+.derecha300{
+    right: 300px;
+}
+.derecha400{
+    right: 400px;
+}
+.derecha500{
+    right: 500px;
+}
 .derecha100p{
     right: 100%;
 }
@@ -1134,6 +1146,18 @@ img{
 }
 .izquierda100{
     left: 100px;
+}
+.izquierda200{
+    left: 200px;
+}
+.izquierda300{
+    left: 300px;
+}
+.izquierda400{
+    left: 400px;
+}
+.izquierda500{
+    left: 500px;
 }
 .izquierda100p{
     left: 100%;

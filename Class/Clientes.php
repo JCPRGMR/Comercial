@@ -34,9 +34,6 @@
                 throw $th;
             }
         }
-        # EDITAR CLIENTE
-        # ELIMINAR CLENTE
-        # EXISTE EL CLIENTE?
         public static function Existe_id($post){
             $post->cliente = trim(strtoupper($post->cliente));
             try {
