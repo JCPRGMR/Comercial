@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/index1.css">
     <link rel="stylesheet" href="../css/style12.css">
-    <title>Document</title>
+    <link rel="shortcut icon" href="../img/rtp_icono.png" type="image/x-icon">
+    <title>Comercial - Control de pases</title>
 </head>
 <body class="h100vh" id="body">
