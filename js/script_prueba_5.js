@@ -26,6 +26,9 @@ document.getElementById('buscadorProgramacion').addEventListener('input', functi
         }
     })
 })
+function validador(){
+    var btn = document.getElementById("")
+}
 function DateVerified(input){
     var input = document.getElementById(input)
     if(input.value.length > 0){
@@ -121,6 +124,24 @@ function Ocultar(){
         }
     })
 }
+function VerifiedInsertar(){
+    var Ocultar = document.getElementById("insertar_comercial")
+    Ocultar.addEventListener('click', function(event){
+        var Cliente = document.getElementById("cliente").value
+        var Programa = document.getElementById("programa").value
+        var Tipo = document.getElementById("tipo").value
+        var Pases = document.getElementById("pases").value
+        if(!window.confirm(`Deseas registrar estos datos en comerciales?
+        Cliente: ${Cliente}
+        Programa: ${Programa}
+        Tipo: ${Tipo}
+        Cantidad de pases: ${Pases}
+        `)){
+            event.preventDefault()
+        }
+    })
+}
+VerifiedInsertar()
 Ocultar()
 function InputOnRadio(inputId, radioId) {
     var input = document.getElementById(inputId)

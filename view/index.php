@@ -173,4 +173,4 @@
     </main>
 </body>
 </html>
-<script src="../js/script_prueba_4.js"></script>
+<script src="../js/script_prueba_5.js"></script>
