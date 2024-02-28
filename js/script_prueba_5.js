@@ -131,11 +131,25 @@ function VerifiedInsertar(){
         var Programa = document.getElementById("programa").value
         var Tipo = document.getElementById("tipo").value
         var Pases = document.getElementById("pases").value
+
+        if(Cliente.trim.length == 0){
+            Cliente = 'Sin dato'
+        }
+        if(Programa.trim.length == 0){
+            Programa = 'Sin dato'
+        }
+        if(Tipo.trim.length == 0){
+            Tipo = 'Sin dato'
+        }
+        if(Pases.trim.length == 0){
+            Pases = 'Sin dato'
+        }
+
         if(!window.confirm(`Deseas registrar estos datos en comerciales?
-        Cliente: ${Cliente}
-        Programa: ${Programa}
-        Tipo: ${Tipo}
-        Cantidad de pases: ${Pases}
+        Cliente => ${Cliente}
+        Programa => ${Programa}
+        Tipo => ${Tipo}
+        Cantidad de pases => ${Pases}
         `)){
             event.preventDefault()
         }
