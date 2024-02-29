@@ -1,6 +1,8 @@
-setInterval(Titulo, 1000)
+
+setInterval(Titulo, 10)
 
 function Titulo(){
+    var programa = document.getElementById("programa")
     var response = new XMLHttpRequest()
     // response.open("GET","../Json/Programa_input.php",true)
     response.open("GET","../Json/Programa_input.php",true)
@@ -8,6 +10,7 @@ function Titulo(){
         try {
             if(response.status === 200){
                 console.log(response.response)
+                programa.value = response.response;
             }
         } catch (error) {
             console.log(error)

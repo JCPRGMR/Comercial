@@ -1,13 +1,6 @@
 // alert('XD')
 filtrarPrograma("programa", "selectprograma")
-cargarValorDesdeLocalStorage("cliente")
 cargarValorDesdeLocalStorage("programa")
-cargarValorDesdeLocalStorage("tipo")
-cargarValorDesdeLocalStorage("pases")
-// DateVerified("cliente")
-// DateVerified("programa")
-// DateVerified("tipo")
-// DateVerified("pases")
 var milisegundos = Date.now()
 console.log("Milisegundos desde el inicio de la época:", milisegundos)
 document.getElementById('buscadorProgramacion').addEventListener('input', function () {
@@ -26,9 +19,6 @@ document.getElementById('buscadorProgramacion').addEventListener('input', functi
         }
     })
 })
-function validador(){
-    var btn = document.getElementById("")
-}
 function DateVerified(input){
     var input = document.getElementById(input)
     if(input.value.length > 0){
@@ -50,13 +40,11 @@ function cargarValorDesdeLocalStorage(inputId) {
     if (storedValue) {
         input.value = storedValue;
     }
-    // Escuchar cambios en el input y almacenar el valor en localStorage
     input.addEventListener('input', function () {
         const inputValue = input.value;
         localStorage.setItem(inputId + 'Value', inputValue);
     });
 }
-// var padre = document.getElementById('body')
 function ModalComercial(element) {
     var id_comercial = element.value;
     try {

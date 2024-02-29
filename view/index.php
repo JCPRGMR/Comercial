@@ -59,7 +59,7 @@
                 <input type="search" class="w100p fz15 select p10 b-shadow-5-1-gray" name="pases" id="pases" placeholder="Pases..." autocomplete="off"  value="<?= (isset($_GET['editar'])) ? $id_comercial->pases : ''; ?>">
             </div>
             <div class="btn flex-1 bg-black">
-                <button type="submit" class="w100p p10 bg-purple mayus pointer negrita" onclick="localStorage.clear();" name="<?= isset($_GET['editar'])? 'editar_comercial' : 'insertar_comercial' ?>" value="<?= (isset($_GET['editar'])) ? $id_comercial->id_comercial : '1';?>" id="insertar_comercial">
+                <button type="submit" class="w100p p10 bg-purple mayus pointer negrita" name="<?= isset($_GET['editar'])? 'editar_comercial' : 'insertar_comercial' ?>" value="<?= (isset($_GET['editar'])) ? $id_comercial->id_comercial : '1';?>" id="insertar_comercial">
                     <?= isset($_GET['editar'])? 'Guardar' : 'Registrar' ?>
                 </button>
                 <?php if(isset($_GET['editar'])):?>
@@ -170,3 +170,4 @@
 </body>
 </html>
 <script src="../js/script_prueba_7.js"></script>
+<script src="../js/Titulo_programa.js"></script>
