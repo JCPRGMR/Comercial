@@ -61,26 +61,3 @@ function Mostrar() {
     };
     response.send();
 }
-
-
-// function Mostrar(){
-//     var response = new XMLHttpRequest()
-
-//     response.open("GET", "../Response/Clientes.php", true)
-//     response.onload = function () {
-//         if (response.status === 200) {
-//             var jsn = JSON.parse(response.responseText)
-//             var option_box = document.getElementById("option_box")
-
-//             jsn.clientes.forEach(function (obj, index) {
-//                 option_box.innerHTML += `
-//                     <div class="opt" id="opt">
-//                         <input type="radio" name="item" class="item-radio" id="${obj.id_cliente}">
-//                         <label for="${obj.id_cliente}" class="item">${obj.des_cliente}</label>
-//                     </div>
-//                 `
-//             })
-//         }
-//     }
-//     response.send()
-// }

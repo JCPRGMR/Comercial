@@ -136,24 +136,23 @@
                 }
             }
         }
-        public static function Programa_de_hoy($dia){
+        public static function Inicio_del_programa($dia){
             try {
-                $sql = "SELECT * FROM vista_programas WHERE dia_semana = ?";
-    
+                $sql = "SELECT 
+                des_programa
+                FROM 
+                vista_programas 
+                WHERE dia_semana = ? 
+                AND ? >= h_inicio
+                AND ? <= h_fin";
+                $hora_actual = date('H:i');
                 $stmt = Conexion::Conectar()->prepare($sql);
-    
                 $stmt->bindParam(1, $dia, PDO::PARAM_STR);
+                $stmt->bindParam(2, $hora_actual, PDO::PARAM_STR);
+                $stmt->bindParam(3, $hora_actual, PDO::PARAM_STR);
                 $stmt->execute();
-    
-                $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
-    
-                foreach($resultado as $item){
-                    if(date('H:i:s') >= $item['h_inicio'] && date('H:i:s', strtotime('+1 hour')) <= $item['h_fin']){
-                        return $item['des_programa'];
-                    }
-                }
-    
+                $resultado = $stmt->fetchColumn();
+                return $resultado;
             } catch (PDOException $th) {
                 throw $th;
             }

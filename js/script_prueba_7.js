@@ -44,6 +44,14 @@ function cargarValorDesdeLocalStorage(inputId) {
         const inputValue = input.value;
         localStorage.setItem(inputId + 'Value', inputValue);
     });
+    input.addEventListener('focus', function () {
+        const inputValue = input.value;
+        localStorage.setItem(inputId + 'Value', inputValue);
+    });
+    input.addEventListener('click', function () {
+        const inputValue = input.value;
+        localStorage.setItem(inputId + 'Value', inputValue);
+    });
 }
 function ModalComercial(element) {
     var id_comercial = element.value;

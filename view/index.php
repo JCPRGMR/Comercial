@@ -11,7 +11,7 @@
     <input type="checkbox" name="" id="abrir_formulario" <?= (isset($_GET['editar']))? 'checked' : ''?> >
     <form action="../Request/Comerciales.php" method="post" class="f-col a-c wrap" id="formulario_comercial">
         <div class="caja2 flex-1 relative f-row w100p">
-            <input type="radio" name="id_programa" id="radio-programa" class="item-radio">
+            <input type="radio" name="id_programa" id="radio-programa" class="item-radio" value="">
             <input type="search" style="text-align: center;" class="fz20 <?= (isset($_GET['editar']) && !is_null($id_comercial->des_programa)) ? 'negrota bg-purple' : 'negrota'; ?> w100p fz15 select p10 b-shadow-5-1-gray" name="programa" id="programa" placeholder="Programa..." autocomplete="off" <?= (isset($_GET['editar']) && is_null($id_comercial->des_programa)) ? 'autofocus' : ''; ?> value="<?= (isset($_GET['editar'])) ? $id_comercial->des_programa : ''; ?>">
             <div class="options index190 b-shadow-5-1-black w200px top40 Mh100px br10 bg-white" id="selectprograma">
                 <div class="option">
@@ -88,15 +88,19 @@
                 <tbody id="vista_comercial" class="">
                     <?php foreach(Comerciales::Mostrar() as $item):?>
                     <tr class="b1">
+                        <!-- COLUMNA DE CLIENTES -->
                         <td class="b1 hp10">
                             <?= $item->des_cliente ?>
                         </td>
+                        <!-- COLUMNA DE PROGRAMA DE COMERCIAL -->
                         <td class="b1 hp10">
                             <?= $item->des_programa ?>
                         </td>
+                        <!-- CLUMNA DE TIPO DE COMERCIAL -->
                         <td class="b1 hp10">
                             <?= $item->des_tipo ?>
                         </td>
+                        <!-- COLUMNA QUE MUESTRA LA CANTIDAD DE PASES ECHOS Y POR HACER -->
                         <td class="negrita fz25 f-row jc-c a-c">
                             <?php if($item->pases == 0): ?>
                                 <div class="blue">
@@ -112,24 +116,28 @@
                                 </div>
                             <?php endif;?>
                         </td>
+                        <!-- COLUMNA QUE MUESTRA LOS BOTONES DE AGREGAR Y ELIMINAR PASES -->
                         <td class="b1 hp10">
                             <form action="../Request/Pases_historial.php" method="post" class="">
+                                <!-- BOTON PARA AGREGAR PASES -->
                                 <button type="submit" class="bg-green p10 br5 pointer mayus" name="pases" value="<?= $item->id_comercial ?>">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
                                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
                                         <path d="m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05"/>
                                     </svg>
                                 </button>
-                                <button type="submit" class="bg-red p10 br5 pointer mayus" name="pases" value="<?= $item->id_comercial ?>">
+                                <!-- BOTON PARA REDUCIR LOS PASES DE LOS HISTORIALES -->
+                                <button type="submit" class="bg-red p10 br5 pointer mayus" name="quitar_pases" value="<?= Pases_historial::Mostrar_Ultimo_Pase($item->id_comercial) ?>">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
                                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
                                         <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8"/>
                                     </svg>
                                 </button>
-                                
                             </form>
                         </td>
+                        <!-- COLUMNA QUE ALMACENA LOS BOTONES DE ELIMINAR Y EDITAR -->
                         <td class="f-row overflow-auto jc-c a-c">
+                            <!-- BOTON DE OCULTAR O ELIMINAR COMERCIAL -->
                             <form action="../Request/Comerciales.php" method="post">
                                 <button type="submit" class="bg-red p10 br5 pointer mayus"  name="ocultar" value="<?= $item->id_comercial ?>" id="ocultar">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
@@ -138,6 +146,7 @@
                                     </svg>
                                 </button>
                             </form>
+                            <!-- BOTON PARA ELMINAR O EDITAR COMERCIAL -->
                             <form action="?editar=<?= $item->id_comercial?>" method="post">
                                 <button type="submit">
                                     <div type="submit" class="bg-yellow p10 br5 pointer mayus fz15"  name="editar" value="<?= $item->id_comercial ?>">
