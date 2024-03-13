@@ -43,9 +43,10 @@
         }
         public static function Ocultar($post){
             try {
-                $sql = "UPDATE comerciales SET estado_comercial = 0 WHERE id_comercial = ?";
+                $sql = "DELETE FROM pases_historial WHERE id_fk_comercial = ?; DELETE FROM comerciales WHERE id_comercial = ?";
                 $stmt = Conexion::Conectar()->prepare($sql);
                 $stmt->bindParam(1, $post->ocultar, PDO::PARAM_INT);
+                $stmt->bindParam(2, $post->ocultar, PDO::PARAM_INT);
                 $stmt->execute();
                 header("Location: ../view/index.php");
             } catch (PDOException $th) {

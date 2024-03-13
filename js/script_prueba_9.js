@@ -3,8 +3,9 @@ cargarValorDesdeLocalStorage("programa")
 cargarValorDesdeLocalStorage("cliente")
 cargarValorDesdeLocalStorage("tipo")
 cargarValorDesdeLocalStorage("pases")
-var milisegundos = Date.now()
-console.log("Milisegundos desde el inicio de la época:", milisegundos)
+/**
+ * BUSCAR EN TODA LA TABLA
+ */
 document.getElementById('buscadorProgramacion').addEventListener('input', function () {
     const term = this.value.toLowerCase()
     const rows = document.querySelectorAll('#vista_comercial tr')
@@ -21,6 +22,34 @@ document.getElementById('buscadorProgramacion').addEventListener('input', functi
         }
     })
 })
+/**
+ * BUSCAR EN LA COLUMNA DE PROGRAMAS
+ */
+document.getElementById('programa').addEventListener('input', function () {
+    const term = this.value.toLowerCase()
+    const rows = document.querySelectorAll('#vista_comercial tr')
+    rows.forEach(row => {
+        const programa = row.querySelector('td:nth-child(2)').textContent.toLowerCase()
+        if (programa.includes(term)) {
+            row.style.display = ''
+        } else {
+            row.style.display = 'none'
+        }
+    })
+})
+document.getElementById('programa').addEventListener('focus', function () {
+    const term = this.value.toLowerCase()
+    const rows = document.querySelectorAll('#vista_comercial tr')
+    rows.forEach(row => {
+        const programa = row.querySelector('td:nth-child(2)').textContent.toLowerCase()
+        if (programa.includes(term)) {
+            row.style.display = ''
+        } else {
+            row.style.display = 'none'
+        }
+    })
+})
+
 function DateVerified(input){
     var input = document.getElementById(input)
     if(input.value.length > 0){
@@ -119,7 +148,7 @@ function InfoPrograma(id){
 function Ocultar(){
     var Ocultar = document.getElementById("ocultar")
     Ocultar.addEventListener('click', function(event){
-        if(!window.confirm("Ya no mostrar este comercial")){
+        if(!window.confirm("Desea eliminar permanentemente ese registro?")){
             event.preventDefault()
         }
     })
@@ -132,16 +161,16 @@ function VerifiedInsertar(){
         var Tipo = document.getElementById("tipo").value
         var Pases = document.getElementById("pases").value
 
-        if(Cliente.trim.length == 0){
+        if(Cliente.length == 0){
             Cliente = 'Sin dato'
         }
-        if(Programa.trim.length == 0){
+        if(Programa.length == 0){
             Programa = 'Sin dato'
         }
-        if(Tipo.trim.length == 0){
+        if(Tipo.length == 0){
             Tipo = 'Sin dato'
         }
-        if(Pases.trim.length == 0){
+        if(Pases.length == 0){
             Pases = 'Sin dato'
         }
 
@@ -235,18 +264,35 @@ function ValueOfLabel_cliente(label) {
     var input = document.getElementById("cliente");
     input.value = label;
     localStorage.setItem('clienteValue', label);
+    document.getElementById("tipo").focus()
 }
 
 function ValueOfLabel_programa(label) {
     var input = document.getElementById("programa");
     input.value = label;
     localStorage.setItem('programaValue', label);
+    document.getElementById("cliente").focus()
+    document.getElementById("selectprograma").focus = false
+    /**
+     * BUSCAR SOLO EN PROGRAMAS
+     */
+    const term = label.toLowerCase()
+    const rows = document.querySelectorAll('#vista_comercial tr')
+    rows.forEach(row => {
+        const programa = row.querySelector('td:nth-child(2)').textContent.toLowerCase()
+        if (programa.includes(term)) {
+            row.style.display = ''
+        } else {
+            row.style.display = 'none'
+        }
+    })
 }
 
 function ValueOfLabel_tipo(label) {
     var input = document.getElementById("tipo");
     input.value = label;
     localStorage.setItem('tipoValue', label);
+    document.getElementById("pases").focus()
 }
 
 // Al cargar la página, restaurar los valores guardados en el almacenamiento local

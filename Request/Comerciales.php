@@ -27,9 +27,6 @@
         // echo $post->editar_comercial;
         // var_dump($post);
     }
-    var_dump($post);
     if(isset($post->nuevo_programa)){
         header('Location: ../view/Programas.php');
     }
-    // echo '<pre>';
-    // var_dump($post);
