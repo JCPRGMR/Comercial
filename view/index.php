@@ -17,11 +17,11 @@
     <?php endif;?>
     <!-- FORMULARIO -->
     <input type="checkbox" name="" id="abrir_formulario" <?= (isset($_GET['editar']))? 'checked' : ''?> >
-    <form action="../Request/Comerciales.php" method="post" class="f-col a-c wrap" id="formulario_comercial">
+    <form action="../Request/Comerciales.php" method="post" class="f-col a-c wrap bg-black" id="formulario_comercial">
         <!-- INPUT PROGRAMAS -->
         <div class="caja2 flex-1 relative f-row w100p">
             <input type="radio" name="id_programa" id="radio-programa" class="item-radio" value="">
-            <input type="search" style="text-align: center;" class="fz20 <?= (isset($_GET['editar']) && !is_null($id_comercial->des_programa)) ? 'negrota bg-yellow' : 'negrota'; ?> w100p fz15 select p10 b-shadow-5-1-gray" name="programa" id="programa" placeholder="Programa..." autocomplete="off" <?= (isset($_GET['editar']) && is_null($id_comercial->des_programa)) ? 'autofocus' : ''; ?> value="<?= (isset($_GET['editar'])) ? $id_comercial->des_programa : ''; ?>">
+            <input type="search" style="text-align: center; color: white;" class="fz20 bg-black1F <?= (isset($_GET['editar']) && !is_null($id_comercial->des_programa)) ? 'negrota bg-yellow' : 'negrota'; ?> w100p fz15 select p10 b-shadow-5-1-gray" name="programa" id="programa" placeholder="Programa..." autocomplete="off" <?= (isset($_GET['editar']) && is_null($id_comercial->des_programa)) ? 'autofocus' : ''; ?> value="<?= (isset($_GET['editar'])) ? $id_comercial->des_programa : ''; ?>">
             <div class="options index190 b-shadow-5-1-black w200px top40 Mh100px br10 bg-white" id="selectprograma">
                 <div class="option">
                     <?php foreach(Programas::Mostrar() as $item):?>
@@ -44,7 +44,7 @@
             <!-- INPUT CLIENTE -->
             <div class="caja1 flex-1 relative f-row mw200p">
                 <input type="radio" class="item-radio" name="id_cliente" id="radio-cliente">
-                <input type="search" class="<?= (isset($_GET['editar']) && !is_null($id_comercial->des_cliente)) ? 'negrota bg-yellow' : 'entrada'; ?> w100p fz15 select p10 b-shadow-5-1-gray" name="cliente" id="cliente" placeholder="Cliente..." <?= (isset($_GET['editar']) && is_null($id_comercial->des_cliente)) ? 'autofocus' : ''; ?> autocomplete="off" value="<?= (isset($_GET['editar'])) ? $id_comercial->des_cliente : ''; ?>" autofocus>
+                <input type="search" style="color: white;" class="bg-black1F <?= (isset($_GET['editar']) && !is_null($id_comercial->des_cliente)) ? 'negrota bg-yellow' : 'entrada'; ?> w100p fz15 select p10 b-shadow-5-1-gray" name="cliente" id="cliente" placeholder="Cliente..." <?= (isset($_GET['editar']) && is_null($id_comercial->des_cliente)) ? 'autofocus' : ''; ?> autocomplete="off" value="<?= (isset($_GET['editar'])) ? $id_comercial->des_cliente : ''; ?>" autofocus>
                 <div class="options index190 b-shadow-5-1-black w200px top40 Mh100px br10 bg-white" id="selectcliente">
                     <div class="option">
                         <?php foreach(Clientes::Mostrar() as $item):?>
@@ -57,7 +57,7 @@
             <!-- INPUT TIPO -->
             <div class="caja3 flex-1 relative f-row mw200p">
                 <input type="radio" name="id_tipo" id="radio-tipo" class="item-radio">
-                <input type="search" class="<?= (isset($_GET['editar']) && !is_null($id_comercial->des_tipo)) ? 'negrota bg-yellow' : 'entrada'; ?> w100p fz15 select p10 b-shadow-5-1-gray" name="tipo" id="tipo" placeholder="Tipo..." autocomplete="off" <?= (isset($_GET['editar']) && is_null($id_comercial->des_tipo)) ? 'autofocus' : ''; ?> value="<?= (isset($_GET['editar'])) ? $id_comercial->des_tipo : ''; ?>">
+                <input type="search" style="color: white;" class="<?= (isset($_GET['editar']) && !is_null($id_comercial->des_tipo)) ? 'negrota bg-yellow' : 'entrada'; ?> bg-black1F w100p fz15 select p10 b-shadow-5-1-gray" name="tipo" id="tipo" placeholder="Tipo..." autocomplete="off" <?= (isset($_GET['editar']) && is_null($id_comercial->des_tipo)) ? 'autofocus' : ''; ?> value="<?= (isset($_GET['editar'])) ? $id_comercial->des_tipo : ''; ?>">
                 <div class="options index190 b-shadow-5-1-black w100px top40 Mh100px br10 bg-white" id="selecttipo">
                     <div class="option">
                         <?php foreach(Tipos::Mostrar() as $item):?>
@@ -69,7 +69,7 @@
             </div>
             <!-- INPUT PASES -->
             <div class="caja4 flex-1 relative f-row mw200p">
-                <input type="search" class="w100p fz15 select p10 b-shadow-5-1-gray <?= isset($_GET["editar"])? 'negrota bg-yellow' : '' ?>" name="pases" id="pases" placeholder="Pases..." autocomplete="off"  value="<?= (isset($_GET['editar'])) ? $id_comercial->pases : ''; ?>">
+                <input type="search" style="color: white;" class="w100p bg-black1F fz15 select p10 b-shadow-5-1-gray <?= isset($_GET["editar"])? 'negrota bg-yellow' : '' ?>" name="pases" id="pases" placeholder="Pases..." autocomplete="off"  value="<?= (isset($_GET['editar'])) ? $id_comercial->pases : ''; ?>">
             </div>
             <!-- BUTTON'S BOX -->
             <div class="btn flex-1 bg-black">
@@ -89,7 +89,7 @@
         <input type="search" name="" id="buscadorProgramacion" class="p10 br50" placeholder="Buscardor">
     </header>
     <!-- TALBA DE COMERCIALES REGISTRADOS -->
-    <main class="tabla h100p overflow-auto relative">
+    <main class="tabla h100p overflow-auto relative bg-black1F">
         <div class="container space-nw relative">
             <table class="tabla-comerciales w100p relative h100p">
                 <thead class="bg-black sticky">
@@ -169,7 +169,7 @@
                             <?php endif;?>
                             <!-- BOTON PARA ELMINAR O EDITAR COMERCIAL -->
                             <form action="?editar=<?= $item->id_comercial?>" method="post">
-                                <button type="submit">
+                                <button type="submit" class=" bg-black1F">
                                     <div type="submit" class="bg-yellow p10 br5 pointer mayus fz15"  name="editar" value="<?= $item->id_comercial ?>">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
                                             <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
