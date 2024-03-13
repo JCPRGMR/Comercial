@@ -52,6 +52,8 @@ function cargarValorDesdeLocalStorage(inputId) {
         const inputValue = input.value;
         localStorage.setItem(inputId + 'Value', inputValue);
     });
+    const inputValue = input.value;
+    localStorage.setItem(inputId + 'Value', inputValue);
 }
 function ModalComercial(element) {
     var id_comercial = element.value;
@@ -228,17 +230,40 @@ function filtrarPrograma(inputId, optionsContainerId) {
 
 
 function ValueOfLabel_cliente(label) {
-    var input = document.getElementById("cliente")
-    input.value = label
+    var input = document.getElementById("cliente");
+    input.value = label;
+    localStorage.setItem('clienteValue', label);
 }
+
 function ValueOfLabel_programa(label) {
-    var input = document.getElementById("programa")
-    input.value = label
+    var input = document.getElementById("programa");
+    input.value = label;
+    localStorage.setItem('programaValue', label);
 }
+
 function ValueOfLabel_tipo(label) {
-    var input = document.getElementById("tipo")
-    input.value = label
+    var input = document.getElementById("tipo");
+    input.value = label;
+    localStorage.setItem('tipoValue', label);
 }
+
+// Al cargar la página, restaurar los valores guardados en el almacenamiento local
+window.onload = function() {
+    var clienteValue = localStorage.getItem('clienteValue');
+    var programaValue = localStorage.getItem('programaValue');
+    var tipoValue = localStorage.getItem('tipoValue');
+
+    if (clienteValue) {
+        document.getElementById("cliente").value = clienteValue;
+    }
+    if (programaValue) {
+        document.getElementById("programa").value = programaValue;
+    }
+    if (tipoValue) {
+        document.getElementById("tipo").value = tipoValue;
+    }
+};
+
 filtrarOpciones("cliente", "selectcliente")
 filtrarOpciones("tipo", "selecttipo")
 
