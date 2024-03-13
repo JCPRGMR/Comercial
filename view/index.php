@@ -1,9 +1,16 @@
+<?php session_start()?>
 <?php include_once("../Response/Comerciales.php")?>
 <?php include_once("../templates/header.php")?>
     <link rel="stylesheet" href="../css/Comercial2.css">
     <div class="w100p h100p bg-blackt absolute index100 f-col jc-c a-c v-hidden" id="modalFather">XD</div>
-    <header class="bg-black p5 mayus">
-        <h1 id="prueba">Comercial</h1>
+    <header class="bg-black p20 mayus f-row jc-b a-c">
+        <div id="prueba" class="negrita fz30">Comercial</div>
+        <div class="f-row gap10 a-c">
+            <?= (isset($_SESSION["rol"])) ? $_SESSION["rol"] : header("Location: ../index.php") ?>
+            <a href="../index.php" class="bg-red fz12 br5 p5 negrita">
+                salir
+            </a>
+        </div>
     </header>
     <?php if(!isset($_GET['editar'])):?>
         <label for="abrir_formulario" id="activar_formulario" class="p10 bg-purple pointer f-col jc-c a-c">Agregar comercial</label>
@@ -137,17 +144,20 @@
                                     </svg>
                                 </button>
                                 <!-- BOTON PARA REDUCIR LOS PASES DE LOS HISTORIALES -->
-                                <button type="submit" class="bg-red p10 br5 pointer mayus" name="quitar_pases" value="<?= Pases_historial::Mostrar_Ultimo_Pase($item->id_comercial) ?>">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
-                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
-                                        <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8"/>
-                                    </svg>
-                                </button>
+                                <?php if($_SESSION["rol"] === 'administrador'):?>
+                                    <button type="submit" class="bg-red p10 br5 pointer mayus" name="quitar_pases" value="<?= Pases_historial::Mostrar_Ultimo_Pase($item->id_comercial) ?>">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
+                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                            <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8"/>
+                                        </svg>
+                                    </button>
+                                <?php endif;?>
                             </form>
                         </td>
                         <!-- COLUMNA QUE ALMACENA LOS BOTONES DE ELIMINAR Y EDITAR -->
                         <td class="f-row overflow-auto jc-c a-c">
                             <!-- BOTON DE OCULTAR O ELIMINAR COMERCIAL -->
+                            <?php if($_SESSION["rol"] === 'administrador'):?>
                             <form action="../Request/Comerciales.php" method="post">
                                 <button type="submit" class="bg-red p10 br5 pointer mayus"  name="ocultar" value="<?= $item->id_comercial ?>" id="ocultar">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
@@ -156,6 +166,7 @@
                                     </svg>
                                 </button>
                             </form>
+                            <?php endif;?>
                             <!-- BOTON PARA ELMINAR O EDITAR COMERCIAL -->
                             <form action="?editar=<?= $item->id_comercial?>" method="post">
                                 <button type="submit">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 01-03-2024 a las 20:15:23
+-- Tiempo de generación: 13-03-2024 a las 21:04:29
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 8.1.10
 
@@ -35,14 +35,6 @@ CREATE TABLE `clientes` (
   `alter_cliente` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
---
--- Volcado de datos para la tabla `clientes`
---
-
-INSERT INTO `clientes` (`id_cliente`, `des_cliente`, `f_registro_cliente`, `h_registro_cliente`, `alter_cliente`) VALUES
-(1, 'CLIENTE2', '2024-02-28', '14:52:00', '2024-02-28 14:52:23'),
-(2, 'SDFSDF', '2024-02-29', '11:39:00', '2024-02-29 11:39:54');
-
 -- --------------------------------------------------------
 
 --
@@ -61,15 +53,6 @@ CREATE TABLE `comerciales` (
   `estado_comercial` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
---
--- Volcado de datos para la tabla `comerciales`
---
-
-INSERT INTO `comerciales` (`id_comercial`, `id_fk_programa`, `id_fk_cliente`, `id_fk_tipo`, `pases`, `f_registro_comercial`, `h_registro_comercial`, `alter_comercial`, `estado_comercial`) VALUES
-(18, 7, NULL, NULL, 0, '2024-03-01', '14:00:00', '2024-03-01 14:00:23', 1),
-(19, 7, NULL, NULL, 0, '2024-03-01', '14:00:00', '2024-03-01 14:00:29', 1),
-(20, 7, NULL, NULL, 0, '2024-03-01', '14:00:00', '2024-03-01 14:00:31', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -87,19 +70,6 @@ CREATE TABLE `horarios` (
   `alter_horario` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
---
--- Volcado de datos para la tabla `horarios`
---
-
-INSERT INTO `horarios` (`id_horario`, `id_fk_programa`, `dia_semana`, `h_inicio`, `h_fin`, `f_registro_horario`, `h_registro_horario`, `alter_horario`) VALUES
-(24, 7, 'JUEVES', '13:36:00', '16:39:00', '2024-02-29', '16:36:00', '2024-02-29 16:36:26'),
-(25, 7, 'VIERNES', '13:36:00', '16:39:00', '2024-02-29', '16:36:00', '2024-02-29 16:36:26'),
-(26, 8, 'LUNES', '11:20:00', '12:17:00', '2024-03-01', '11:17:00', '2024-03-01 11:17:25'),
-(27, 8, 'MARTES', '11:20:00', '12:17:00', '2024-03-01', '11:17:00', '2024-03-01 11:17:25'),
-(28, 8, 'MIERCOLES', '11:20:00', '12:17:00', '2024-03-01', '11:17:00', '2024-03-01 11:17:25'),
-(29, 8, 'JUEVES', '11:20:00', '12:17:00', '2024-03-01', '11:17:00', '2024-03-01 11:17:25'),
-(30, 8, 'VIERNES', '11:20:00', '12:17:00', '2024-03-01', '11:17:00', '2024-03-01 11:17:25');
-
 -- --------------------------------------------------------
 
 --
@@ -114,18 +84,6 @@ CREATE TABLE `pases_historial` (
   `h_registro_pase` time NOT NULL,
   `alter_pase` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Volcado de datos para la tabla `pases_historial`
---
-
-INSERT INTO `pases_historial` (`id_pase_historial`, `id_fk_comercial`, `pase_estado`, `f_registro_pase`, `h_registro_pase`, `alter_pase`) VALUES
-(12, 20, 1, '2024-03-01', '16:08:00', '2024-03-01 16:08:42'),
-(13, 20, 1, '2024-03-01', '16:08:00', '2024-03-01 16:08:44'),
-(14, 20, 1, '2024-03-01', '16:08:00', '2024-03-01 16:08:45'),
-(15, 20, 1, '2024-03-01', '16:08:00', '2024-03-01 16:08:47'),
-(16, 20, 1, '2024-03-01', '16:08:00', '2024-03-01 16:08:48'),
-(17, 20, 1, '2024-03-01', '16:08:00', '2024-03-01 16:08:49');
 
 -- --------------------------------------------------------
 
@@ -142,14 +100,6 @@ CREATE TABLE `programas` (
   `detalles` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
---
--- Volcado de datos para la tabla `programas`
---
-
-INSERT INTO `programas` (`id_programa`, `des_programa`, `f_registro_programa`, `h_registro_programa`, `alter_programa`, `detalles`) VALUES
-(7, 'LUCHA DE CACERAS', '2024-02-29', '16:36:00', '2024-02-29 16:36:26', ''),
-(8, 'TRIBUNA', '2024-03-01', '11:17:00', '2024-03-01 11:17:25', '');
-
 -- --------------------------------------------------------
 
 --
@@ -164,12 +114,27 @@ CREATE TABLE `tipos` (
   `alter_tipo` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- --------------------------------------------------------
+
 --
--- Volcado de datos para la tabla `tipos`
+-- Estructura de tabla para la tabla `usuarios`
 --
 
-INSERT INTO `tipos` (`id_tipo`, `des_tipo`, `f_registro_tipo`, `h_registro_tipo`, `alter_tipo`) VALUES
-(1, 'ASDFASDF', '2024-02-28', '14:52:00', '2024-02-28 14:52:23');
+CREATE TABLE `usuarios` (
+  `id_usuario` int NOT NULL,
+  `rol` varchar(50) DEFAULT NULL,
+  `usuarios` varchar(50) DEFAULT NULL,
+  `clave` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id_usuario`, `rol`, `usuarios`, `clave`) VALUES
+(1, 'administrador', 'admin', 's1st3m4s@rtp'),
+(2, 'switcher', 'switcher', 'switcher'),
+(3, 'switcher', 'switcher1', 'switcher1');
 
 -- --------------------------------------------------------
 
@@ -178,30 +143,30 @@ INSERT INTO `tipos` (`id_tipo`, `des_tipo`, `f_registro_tipo`, `h_registro_tipo`
 -- (Véase abajo para la vista actual)
 --
 CREATE TABLE `vista_comerciales` (
-`alter_cliente` datetime
-,`alter_comercial` datetime
-,`alter_programa` datetime
-,`alter_tipo` datetime
-,`des_cliente` varchar(100)
-,`des_programa` varchar(255)
-,`des_tipo` varchar(25)
-,`estado_comercial` int
-,`f_registro_cliente` date
-,`f_registro_comercial` date
-,`f_registro_programa` date
-,`f_registro_tipo` date
-,`h_registro_cliente` time
-,`h_registro_comercial` time
-,`h_registro_programa` time
-,`h_registro_tipo` time
-,`id_cliente` int
-,`id_comercial` int
-,`id_fk_cliente` int
+`id_comercial` int
 ,`id_fk_programa` int
+,`id_fk_cliente` int
 ,`id_fk_tipo` int
-,`id_programa` int
-,`id_tipo` int
 ,`pases` int
+,`f_registro_comercial` date
+,`h_registro_comercial` time
+,`alter_comercial` datetime
+,`id_cliente` int
+,`des_cliente` varchar(100)
+,`f_registro_cliente` date
+,`h_registro_cliente` time
+,`alter_cliente` datetime
+,`id_programa` int
+,`des_programa` varchar(255)
+,`f_registro_programa` date
+,`h_registro_programa` time
+,`alter_programa` datetime
+,`id_tipo` int
+,`des_tipo` varchar(25)
+,`f_registro_tipo` date
+,`h_registro_tipo` time
+,`alter_tipo` datetime
+,`estado_comercial` int
 );
 
 -- --------------------------------------------------------
@@ -211,19 +176,19 @@ CREATE TABLE `vista_comerciales` (
 -- (Véase abajo para la vista actual)
 --
 CREATE TABLE `vista_programas` (
-`alter_horario` datetime
-,`alter_programa` datetime
+`id_programa` int
 ,`des_programa` varchar(255)
-,`dia_semana` varchar(20)
-,`f_registro_horario` date
 ,`f_registro_programa` date
-,`h_fin` time
-,`h_inicio` time
-,`h_registro_horario` time
 ,`h_registro_programa` time
-,`id_fk_programa` int
+,`alter_programa` datetime
 ,`id_horario` int
-,`id_programa` int
+,`id_fk_programa` int
+,`dia_semana` varchar(20)
+,`h_inicio` time
+,`h_fin` time
+,`f_registro_horario` date
+,`h_registro_horario` time
+,`alter_horario` datetime
 );
 
 -- --------------------------------------------------------
@@ -290,6 +255,12 @@ ALTER TABLE `tipos`
   ADD PRIMARY KEY (`id_tipo`);
 
 --
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id_usuario`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -297,37 +268,37 @@ ALTER TABLE `tipos`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id_cliente` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_cliente` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `comerciales`
 --
 ALTER TABLE `comerciales`
-  MODIFY `id_comercial` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_comercial` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `horarios`
 --
 ALTER TABLE `horarios`
-  MODIFY `id_horario` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id_horario` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `pases_historial`
 --
 ALTER TABLE `pases_historial`
-  MODIFY `id_pase_historial` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_pase_historial` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `programas`
 --
 ALTER TABLE `programas`
-  MODIFY `id_programa` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_programa` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `tipos`
 --
 ALTER TABLE `tipos`
-  MODIFY `id_tipo` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_tipo` int NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas

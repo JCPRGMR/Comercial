@@ -1,3 +1,4 @@
+// alert(2)
 filtrarPrograma("programa", "selectprograma")
 cargarValorDesdeLocalStorage("programa")
 cargarValorDesdeLocalStorage("cliente")
@@ -271,8 +272,6 @@ function ValueOfLabel_programa(label) {
     var input = document.getElementById("programa");
     input.value = label;
     localStorage.setItem('programaValue', label);
-    document.getElementById("cliente").focus()
-    document.getElementById("selectprograma").focus = false
     /**
      * BUSCAR SOLO EN PROGRAMAS
      */
