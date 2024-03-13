@@ -1,6 +1,8 @@
-// alert('XD')
 filtrarPrograma("programa", "selectprograma")
 cargarValorDesdeLocalStorage("programa")
+cargarValorDesdeLocalStorage("cliente")
+cargarValorDesdeLocalStorage("tipo")
+cargarValorDesdeLocalStorage("pases")
 var milisegundos = Date.now()
 console.log("Milisegundos desde el inicio de la época:", milisegundos)
 document.getElementById('buscadorProgramacion').addEventListener('input', function () {

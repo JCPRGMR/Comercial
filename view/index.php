@@ -178,5 +178,5 @@
     </main>
 </body>
 </html>
-<script src="../js/script_prueba_8.js"></script>
+<script src="../js/script_prueba_9.js"></script>
 <script src="../js/Titulo_programa.js"></script>
