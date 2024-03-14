@@ -8,6 +8,8 @@
     
     $id_comercial = (isset($_GET['editar']))? Comerciales::Buscar_x_id($_GET['editar']) : '';
 
+    // var_dump(Comerciales::Buscar_x_id(63));
+
     $hoy = Comerciales::Traduccion_date(date('D'));
     // $day = [
         

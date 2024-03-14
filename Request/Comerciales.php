@@ -6,26 +6,45 @@
     include_once('../Class/Tipos.php');
     include_once('../Class/Comerciales.php');
     
-    if(isset($post->insertar_comercial) && $post->insertar_comercial == 1){
+    echo '<pre>';
+    if(isset($post->insertar_comercial) && $post->insertar_comercial == 1){    
+        $historial = (object)[
+            "programa" => $post->cliente,
+            "cliente" => $post->programa,
+            "tipo" => $post->tipo,
+            "detalles" => $post->detalles,
+            "pases" => 0,
+            "comercial" => null,
+        ];
         $post->cliente = (Clientes::Existe_id($post))? Clientes::Existe_id($post) : null ;
         $post->programa = (Programas::Existe_id($post))? Programas::Existe_id($post) : null ;
         $post->tipo = (Tipos::Existe_id($post))? Tipos::Existe_id($post) : null ;
-        echo '<pre>';
         var_dump($post);
-        print_r($post);
-        Comerciales::Insertar($post);
+        $id = Comerciales::Insertar($post);
+        $historial->comercial = $id;
+        Comerciales::Historial($historial);
+        var_dump($historial);
+        header('Location: ../view/index.php');
     }
 
     (isset($post->ocultar)) && Comerciales::Ocultar($post);
     
     if(isset($post->editar_comercial)){
+        $historial = (object)[
+            "programa" => $post->cliente,
+            "cliente" => $post->programa,
+            "tipo" => $post->tipo,
+            "detalles" => $post->detalles,
+            "pases" => 0,
+            "comercial" => null,
+        ];
         $post->cliente = (Clientes::Existe_id($post))? Clientes::Existe_id($post) : null ;
         $post->programa = (Programas::Existe_id($post))? Programas::Existe_id($post) : null ;
         $post->tipo = (Tipos::Existe_id($post))? Tipos::Existe_id($post) : null ;
         Comerciales::Editar($post);
-        // echo '<pre>';
-        // echo $post->editar_comercial;
-        // var_dump($post);
+        $historial->comercial = $post->editar_comercial;
+        Comerciales::Historial($historial);
+        header('Location: ../view/index.php');
     }
     if(isset($post->nuevo_programa)){
         header('Location: ../view/Programas.php');

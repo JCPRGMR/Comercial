@@ -1,9 +1,13 @@
 // alert(2)
 filtrarPrograma("programa", "selectprograma")
+filtrarOpciones("cliente", "selectcliente")
+filtrarOpciones("tipo", "selecttipo")
+filtrarOpciones("detalles", "selectdetalle")
 cargarValorDesdeLocalStorage("programa")
 cargarValorDesdeLocalStorage("cliente")
 cargarValorDesdeLocalStorage("tipo")
 cargarValorDesdeLocalStorage("pases")
+cargarValorDesdeLocalStorage("detalles")
 /**
  * BUSCAR EN TODA LA TABLA
  */
@@ -84,6 +88,13 @@ function cargarValorDesdeLocalStorage(inputId) {
         const inputValue = input.value;
         localStorage.setItem(inputId + 'Value', inputValue);
     });
+    
+    input.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter' || event.key === 'Tab') {
+            const inputValue = input.value;
+            localStorage.setItem(inputId + 'Value', inputValue);
+        }
+    });
     const inputValue = input.value;
     localStorage.setItem(inputId + 'Value', inputValue);
 }
@@ -161,6 +172,7 @@ function VerifiedInsertar(){
         var Programa = document.getElementById("programa").value
         var Tipo = document.getElementById("tipo").value
         var Pases = document.getElementById("pases").value
+        var Detalles = document.getElementById("detalles").value
 
         if(Cliente.length == 0){
             Cliente = 'Sin dato'
@@ -173,6 +185,9 @@ function VerifiedInsertar(){
         }
         if(Pases.length == 0){
             Pases = 'Sin dato'
+        }
+        if(Detalles.length == 0){
+            Detalles = 'Sin dato'
         }
 
         if(!window.confirm(`Deseas registrar estos datos en comerciales?
@@ -196,26 +211,46 @@ function InputOnRadio(inputId, radioId) {
     })
 }
 function filtrarOpciones(inputId, optionsContainerId) {
-    var input = document.getElementById(inputId)
-    var labels = document.querySelectorAll('#' + optionsContainerId + ' .option label')
+    var input = document.getElementById(inputId);
+    var labels = document.querySelectorAll('#' + optionsContainerId + ' .option label');
+
     input.addEventListener('input', function () {
-        var textoBusqueda = this.value.toLowerCase()
+        var textoBusqueda = this.value.toLowerCase();
         labels.forEach(label => {
-            var labelTexto = label.textContent.toLowerCase()
-            var mostrar = true
+            var labelTexto = label.textContent.toLowerCase();
+            var mostrar = true;
             for (var i = 0; i < textoBusqueda.length; i++) {
-                var caracter = textoBusqueda[i]
+                var caracter = textoBusqueda[i];
                 if (labelTexto.includes(caracter)) {
-                    labelTexto = labelTexto.replace(caracter, '')
+                    labelTexto = labelTexto.replace(caracter, '');
                 } else {
-                    mostrar = false
-                    break
+                    mostrar = false;
+                    break;
                 }
             }
-            label.style.display = mostrar ? 'block' : 'none'
-        })
-    })
+            label.style.display = mostrar ? 'block' : 'none';
+        });
+    });
+
+    // Autocompletado cuando se presiona Enter o Tab
+    input.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter' || event.key === 'Tab') {
+            var primerLabelVisible = null;
+            for (var i = 0; i < labels.length; i++) {
+                var label = labels[i];
+                // console.log(label.textContent)
+                if (label.style.display !== 'none') {
+                    primerLabelVisible = label;
+                    break;
+                }
+            }
+            if (primerLabelVisible !== null) {
+                this.value = primerLabelVisible.textContent;
+            }
+        }
+    });
 }
+
 function filtrarPrograma(inputId, optionsContainerId) {
     var input = document.getElementById(inputId);
     var labels = document.querySelectorAll('#' + optionsContainerId + ' .option label');
@@ -256,6 +291,22 @@ function filtrarPrograma(inputId, optionsContainerId) {
                 <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
                 <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
             </svg>`;
+        }
+    });
+    
+
+    // Autocompletado con el último valor visible cuando se presiona Enter o Tab
+    input.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter' || event.key === 'Tab') {
+            var ultimoLabelVisible = null;
+            labels.forEach(label => {
+                if (label.style.display !== 'none') {
+                    ultimoLabelVisible = label;
+                }
+            });
+            if (ultimoLabelVisible !== null) {
+                this.value = ultimoLabelVisible.textContent;
+            }
         }
     });
 }

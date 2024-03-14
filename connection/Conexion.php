@@ -20,7 +20,7 @@
                 $stmt = new PDO($con, self::$user, self::$pass);
                 $stmt->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 self::$f_registro = date('Y-m-d');
-                self::$h_registro = date('H:i');
+                self::$h_registro = date('H:i:s');
                 self::$alter = date('Y-m-d H:i:s');
                 return $stmt;
             } catch (PDOException $th) {

@@ -1,3 +1,4 @@
+// alert(2)
 document.addEventListener('keypress', function(event){
     if (event.key === 'Enter') {
         event.preventDefault();
@@ -6,6 +7,7 @@ document.addEventListener('keypress', function(event){
         var fcliente = document.getElementById("cliente");
         var ftipo = document.getElementById("tipo");
         var fpases = document.getElementById("pases");
+        var fdetalles = document.getElementById("detalles");
 
         var btnEnviarRegistro = document.getElementById("insertar_comercial");
         
@@ -16,6 +18,8 @@ document.addEventListener('keypress', function(event){
         } else if (document.activeElement.id === "tipo") {
             fpases.focus();
         } else if (document.activeElement.id === "pases") {
+            fdetalles.focus();
+        } else if (document.activeElement.id === "detalles") {
             document.getElementById("insertar_comercial").click();
         }
     }

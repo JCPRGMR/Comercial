@@ -18,27 +18,71 @@
                     id_fk_programa,
                     id_fk_cliente,
                     id_fk_tipo,
+
+                    detalles_comercial,
+
                     pases,
                     f_registro_comercial,
                     h_registro_comercial,
                     alter_comercial,
                     estado_comercial
-                ) VALUES(?,?,?,?, ?,?,?, ?)";
+                ) VALUES(?,?,?,?, ?,?,?, ?,?)";
                 $stmt = Conexion::Conectar()->prepare($sql);
                 $estado = 1;
                 $stmt->bindParam(1, $post->programa, PDO::PARAM_INT);
                 $stmt->bindParam(2, $post->cliente, PDO::PARAM_INT);
                 $stmt->bindParam(3, $post->tipo, PDO::PARAM_INT);
-                $stmt->bindParam(4, $post->pases, PDO::PARAM_INT);
-                $stmt->bindParam(5, Conexion::$f_registro, PDO::PARAM_STR);
-                $stmt->bindParam(6, Conexion::$h_registro, PDO::PARAM_STR);
-                $stmt->bindParam(7, Conexion::$alter, PDO::PARAM_STR);
-                $stmt->bindParam(8, $estado, PDO::PARAM_INT);
+
+                $stmt->bindParam(4, $post->detalles, PDO::PARAM_STR);
+
+                $stmt->bindParam(5, $post->pases, PDO::PARAM_INT);
+                $stmt->bindParam(6, Conexion::$f_registro, PDO::PARAM_STR);
+                $stmt->bindParam(7, Conexion::$h_registro, PDO::PARAM_STR);
+                $stmt->bindParam(8, Conexion::$alter, PDO::PARAM_STR);
+                $stmt->bindParam(9, $estado, PDO::PARAM_INT);
                 $stmt->execute();
-                // echo 'Comercial programado correctamente';
-                header("Location: ../view/index.php?estado=on");
+                $sql = "SELECT MAX(id_comercial) FROM comerciales";
+                $stmt = Conexion::Conectar()->prepare($sql);
+                $stmt->execute();
+                $id = $stmt->fetchColumn();
+                return $id;
             } catch (PDOException $th) {
                 throw $th;
+            }
+        }
+        public static function Historial($post){
+            try {
+                $ESTADO = 1;
+                $sql = "INSERT INTO historialdecomerciales(
+                    id_comercial,
+                    historial_programa,
+                    historial_cliente,
+                    historial_tipo,
+
+                    historial_detalles,
+
+                    historial_pases,
+                    estado_comercial,
+                    f_registro_historial,
+                    h_registro_historial,
+                    alter_historial
+                ) VALUES(?,?,?,?,?, ?,?,?,?,?)";
+                $stmt = Conexion::Conectar()->prepare($sql);
+                $stmt->bindParam(1, $post->comercial, PDO::PARAM_INT);
+                $stmt->bindParam(2, $post->programa, PDO::PARAM_STR);
+                $stmt->bindParam(3, $post->cliente, PDO::PARAM_STR);
+                $stmt->bindParam(4, $post->tipo, PDO::PARAM_STR);
+
+                $stmt->bindParam(5, $post->detalles, PDO::PARAM_STR);
+
+                $stmt->bindParam(6, $post->pases, PDO::PARAM_STR);
+                $stmt->bindParam(7, $ESTADO, PDO::PARAM_INT);
+                $stmt->bindParam(8, Conexion::$f_registro, PDO::PARAM_STR);
+                $stmt->bindParam(9, Conexion::$h_registro, PDO::PARAM_STR);
+                $stmt->bindParam(10, Conexion::$alter, PDO::PARAM_STR);
+                $stmt->execute();
+            } catch (PDOException $th) {
+                echo $th->getMessage();
             }
         }
         public static function Ocultar($post){
@@ -61,17 +105,18 @@
                 id_fk_programa = ?,
                 id_fk_cliente = ?,
                 id_fk_tipo = ?,
+                detalles_comercial = ?,
                 pases = ?,
                 alter_comercial  = ? WHERE id_comercial = ?";
                 $stmt = Conexion::Conectar()->prepare($sql);
                 $stmt->bindParam(1, $post->programa, PDO::PARAM_INT);
                 $stmt->bindParam(2, $post->cliente, PDO::PARAM_INT);
                 $stmt->bindParam(3, $post->tipo, PDO::PARAM_INT);
-                $stmt->bindParam(4, $post->pases, PDO::PARAM_INT);
-                $stmt->bindParam(5, Conexion::$alter, PDO::PARAM_STR);
-                $stmt->bindParam(6, $post->editar_comercial, PDO::PARAM_STR);
+                $stmt->bindParam(4, $post->detalles, PDO::PARAM_STR);
+                $stmt->bindParam(5, $post->pases, PDO::PARAM_INT);
+                $stmt->bindParam(6, Conexion::$alter, PDO::PARAM_STR);
+                $stmt->bindParam(7, $post->editar_comercial, PDO::PARAM_STR);
                 $stmt->execute();
-                header('Location: ../view/index.php');
             } catch (PDOException $th) {
                 throw $th;
             }

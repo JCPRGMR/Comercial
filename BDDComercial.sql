@@ -11,3 +11,5 @@ ALTER Table comerciales AUTO_INCREMENT = 1;
 ALTER Table programas AUTO_INCREMENT = 1;
 ALTER Table tipos AUTO_INCREMENT = 1;
 ALTER Table clientes AUTO_INCREMENT = 1;
+
+SELECT DISTINCT(historial_detalles) FROM historialdecomerciales WHERE historial_detalles != '' GROUP BY historial_detalles;

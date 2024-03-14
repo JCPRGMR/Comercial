@@ -62,4 +62,15 @@
                 throw $th;
             }
         }
+        public static function DetallesHistorial(){
+            try {
+                $sql = "SELECT DISTINCT(historial_detalles) FROM historialdecomerciales WHERE historial_detalles != '' GROUP BY historial_detalles";
+                $stmt = Conexion::Conectar()->prepare($sql);
+                $stmt->execute();
+                $resultado = $stmt->fetchAll(PDO::FETCH_OBJ);
+                return $resultado;
+            } catch (PDOException $th) {
+                throw $th;
+            }
+        }
     }

@@ -15,7 +15,6 @@ function obtenerPrograma() {
     response.onreadystatechange = function () {
         try {
             if (response.status === 200) {
-                console.log(response.response);
                 programa.value = response.response;
             }
         } catch (error) {
