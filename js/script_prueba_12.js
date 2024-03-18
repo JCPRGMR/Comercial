@@ -165,41 +165,41 @@ function Ocultar(){
         }
     })
 }
-function VerifiedInsertar(){
-    var Ocultar = document.getElementById("insertar_comercial")
-    Ocultar.addEventListener('click', function(event){
-        var Cliente = document.getElementById("cliente").value
-        var Programa = document.getElementById("programa").value
-        var Tipo = document.getElementById("tipo").value
-        var Pases = document.getElementById("pases").value
-        var Detalles = document.getElementById("detalles").value
+// function VerifiedInsertar(){
+//     var Ocultar = document.getElementById("insertar_comercial")
+//     Ocultar.addEventListener('click', function(event){
+//         var Cliente = document.getElementById("cliente").value
+//         var Programa = document.getElementById("programa").value
+//         var Tipo = document.getElementById("tipo").value
+//         var Pases = document.getElementById("pases").value
+//         var Detalles = document.getElementById("detalles").value
 
-        if(Cliente.length == 0){
-            Cliente = 'Sin dato'
-        }
-        if(Programa.length == 0){
-            Programa = 'Sin dato'
-        }
-        if(Tipo.length == 0){
-            Tipo = 'Sin dato'
-        }
-        if(Pases.length == 0){
-            Pases = 'Sin dato'
-        }
-        if(Detalles.length == 0){
-            Detalles = 'Sin dato'
-        }
+//         if(Cliente.length == 0){
+//             Cliente = 'Sin dato'
+//         }
+//         if(Programa.length == 0){
+//             Programa = 'Sin dato'
+//         }
+//         if(Tipo.length == 0){
+//             Tipo = 'Sin dato'
+//         }
+//         if(Pases.length == 0){
+//             Pases = 'Sin dato'
+//         }
+//         if(Detalles.length == 0){
+//             Detalles = 'Sin dato'
+//         }
 
-        if(!window.confirm(`Deseas registrar estos datos en comerciales?
-        Cliente => ${Cliente}
-        Programa => ${Programa}
-        Tipo => ${Tipo}
-        Cantidad de pases => ${Pases}
-        `)){
-            event.preventDefault()
-        }
-    })
-}
+//         if(!window.confirm(`Deseas registrar estos datos en comerciales?
+//         Cliente => ${Cliente}
+//         Programa => ${Programa}
+//         Tipo => ${Tipo}
+//         Cantidad de pases => ${Pases}
+//         `)){
+//             event.preventDefault()
+//         }
+//     })
+// }
 VerifiedInsertar()
 Ocultar()
 function InputOnRadio(inputId, radioId) {

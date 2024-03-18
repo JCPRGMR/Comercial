@@ -21,7 +21,7 @@
         <!-- INPUT PROGRAMAS -->
         <div class="caja2 flex-1 relative f-row w100p">
             <input type="radio" name="id_programa" id="radio-programa" class="item-radio" value="">
-            <input type="search" style="text-align: center; color: white;" class="fz20 bg-black1F <?= (isset($_GET['editar']) && !is_null($id_comercial->des_programa)) ? 'negrota bg-yellow-strong' : 'negrota'; ?> w100p fz15 select p10 b-shadow-5-1-gray" name="programa" id="programa" placeholder="Programa..." autocomplete="off" <?= (isset($_GET['editar']) && is_null($id_comercial->des_programa)) ? '' : ''; ?> value="<?= (isset($_GET['editar'])) ? $id_comercial->des_programa : ''; ?>">
+            <input type="search" style="text-align: center; color: white;" class="fz20 bg-black1F <?= (isset($_GET['editar']) && !is_null($id_comercial->des_programa)) ? 'negrota bg-yellow-strong' : 'negrota'; ?> w100p fz15 select p10 b-shadow-5-1-gray" name="programa" id="programa" placeholder="Programa..." autocomplete="off" <?= (isset($_GET['editar']) && is_null($id_comercial->des_programa)) ? '' : ''; ?> value="<?= (isset($_GET['editar'])) ? $id_comercial->des_programa : ''; ?>" required>
             <div class="options index190 b-shadow-5-1-black w200px top40 Mh100px br10 bg-white" id="selectprograma">
                 <div class="option">
                     <?php foreach(Programas::Mostrar() as $item):?>
@@ -44,7 +44,7 @@
             <!-- INPUT CLIENTE -->
             <div class="caja1 relative f-row mw200p">
                 <input type="radio" class="item-radio" name="id_cliente" id="radio-cliente">
-                <input type="search" style="color: white;" class="bg-black1F <?= (isset($_GET['editar']) && !is_null($id_comercial->des_cliente)) ? 'negrota bg-yellow-strong' : 'entrada'; ?> w100p fz15 select p10 b-shadow-5-1-gray" name="cliente" id="cliente" placeholder="Cliente..." <?= (isset($_GET['editar']) && is_null($id_comercial->des_cliente)) ? '' : ''; ?> autocomplete="off" value="<?= (isset($_GET['editar'])) ? $id_comercial->des_cliente : ''; ?>">
+                <input type="search" style="color: white;" class="bg-black1F <?= (isset($_GET['editar']) && !is_null($id_comercial->des_cliente)) ? 'negrota bg-yellow-strong' : 'entrada'; ?> w100p fz15 select p10 b-shadow-5-1-gray" name="cliente" id="cliente" placeholder="Cliente..." <?= (isset($_GET['editar']) && is_null($id_comercial->des_cliente)) ? '' : ''; ?> autocomplete="off" value="<?= (isset($_GET['editar'])) ? $id_comercial->des_cliente : ''; ?>" required>
                 <div class="options index190 b-shadow-5-1-black w200px top40 Mh100px br10 bg-white" id="selectcliente">
                     <div class="option">
                         <?php foreach(Clientes::Mostrar() as $item):?>
@@ -57,7 +57,7 @@
             <!-- INPUT TIPO -->
             <div class="caja3 relative f-row">
                 <input type="radio" name="id_tipo" id="radio-tipo" class="item-radio">
-                <input type="search" style="color: white;" class="<?= (isset($_GET['editar']) && !is_null($id_comercial->des_tipo)) ? 'negrota bg-yellow-strong' : 'entrada'; ?> bg-black1F Mw100p fz15 select p10 b-shadow-5-1-gray" name="tipo" id="tipo" placeholder="Tipo..." autocomplete="off" <?= (isset($_GET['editar']) && is_null($id_comercial->des_tipo)) ? '' : ''; ?> value="<?= (isset($_GET['editar'])) ? $id_comercial->des_tipo : ''; ?>">
+                <input type="search" style="color: white;" class="<?= (isset($_GET['editar']) && !is_null($id_comercial->des_tipo)) ? 'negrota bg-yellow-strong' : 'entrada'; ?> bg-black1F Mw100p fz15 select p10 b-shadow-5-1-gray" name="tipo" id="tipo" placeholder="Tipo..." autocomplete="off" <?= (isset($_GET['editar']) && is_null($id_comercial->des_tipo)) ? '' : ''; ?> value="<?= (isset($_GET['editar'])) ? $id_comercial->des_tipo : ''; ?>" required>
                 <div class="options index190 b-shadow-5-1-black w100px top40 Mh100px br10 bg-white" id="selecttipo">
                     <div class="option">
                         <?php foreach(Tipos::Mostrar() as $item):?>
@@ -89,7 +89,7 @@
                     <?= isset($_GET['editar'])? 'Guardar' : 'Registrar' ?>
                 </button>
                 <?php if(isset($_GET['editar'])):?>
-                <a href="index.php" class="p10 bg-red">Cancelar</a>
+                <a href="index.php" class="p10 bg-red" onclick="localStorage.clear()">Cancelar</a>
                 <?php endif;?>
             </div>
         </div>
@@ -211,7 +211,7 @@
     </main>
 </body>
 </html>
-<script src="../js/script_prueba_11.js"></script>
+<script src="../js/script_prueba_12.js"></script>
 <?php if(!isset($_GET["editar"])): ?>
 <script src="../js/Titulo_programa1.js"></script>
 <?php endif;?>
