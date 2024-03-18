@@ -42,7 +42,7 @@
         <!-- INPUTS DE ABAJO -->
         <div class="w100p f-row wrap">
             <!-- INPUT CLIENTE -->
-            <div class="caja1 flex-1 relative f-row mw200p">
+            <div class="caja1 relative f-row mw200p">
                 <input type="radio" class="item-radio" name="id_cliente" id="radio-cliente">
                 <input type="search" style="color: white;" class="bg-black1F <?= (isset($_GET['editar']) && !is_null($id_comercial->des_cliente)) ? 'negrota bg-yellow-strong' : 'entrada'; ?> w100p fz15 select p10 b-shadow-5-1-gray" name="cliente" id="cliente" placeholder="Cliente..." <?= (isset($_GET['editar']) && is_null($id_comercial->des_cliente)) ? '' : ''; ?> autocomplete="off" value="<?= (isset($_GET['editar'])) ? $id_comercial->des_cliente : ''; ?>">
                 <div class="options index190 b-shadow-5-1-black w200px top40 Mh100px br10 bg-white" id="selectcliente">
@@ -55,9 +55,9 @@
                 </div>
             </div>
             <!-- INPUT TIPO -->
-            <div class="caja3 flex-1 relative f-row mw200p">
+            <div class="caja3 relative f-row">
                 <input type="radio" name="id_tipo" id="radio-tipo" class="item-radio">
-                <input type="search" style="color: white;" class="<?= (isset($_GET['editar']) && !is_null($id_comercial->des_tipo)) ? 'negrota bg-yellow-strong' : 'entrada'; ?> bg-black1F w100p fz15 select p10 b-shadow-5-1-gray" name="tipo" id="tipo" placeholder="Tipo..." autocomplete="off" <?= (isset($_GET['editar']) && is_null($id_comercial->des_tipo)) ? '' : ''; ?> value="<?= (isset($_GET['editar'])) ? $id_comercial->des_tipo : ''; ?>">
+                <input type="search" style="color: white;" class="<?= (isset($_GET['editar']) && !is_null($id_comercial->des_tipo)) ? 'negrota bg-yellow-strong' : 'entrada'; ?> bg-black1F Mw100p fz15 select p10 b-shadow-5-1-gray" name="tipo" id="tipo" placeholder="Tipo..." autocomplete="off" <?= (isset($_GET['editar']) && is_null($id_comercial->des_tipo)) ? '' : ''; ?> value="<?= (isset($_GET['editar'])) ? $id_comercial->des_tipo : ''; ?>">
                 <div class="options index190 b-shadow-5-1-black w100px top40 Mh100px br10 bg-white" id="selecttipo">
                     <div class="option">
                         <?php foreach(Tipos::Mostrar() as $item):?>
@@ -68,28 +68,29 @@
                 </div>
             </div>
             <!-- INPUT PASES -->
-            <div class="caja4 flex-1 relative f-row mw200p">
-                <input type="search" style="color: white;" class="w100p bg-black1F fz15 select p10 b-shadow-5-1-gray <?= isset($_GET["editar"])? 'negrota bg-yellow-strong' : '' ?>" name="pases" id="pases" placeholder="Pases..." autocomplete="off"  value="<?= (isset($_GET['editar'])) ? $id_comercial->pases : ''; ?>">
+            <div class="caja4 relative f-row">
+                <input type="search" style="color: white;" class="w100p bg-black1F fz15 select p10 b-shadow-5-1-gray <?= isset($_GET["editar"])? 'negrota bg-yellow-strong' : '' ?> Mw90p" name="pases" id="pases" placeholder="Pases..." autocomplete="off"  value="<?= (isset($_GET['editar'])) ? $id_comercial->pases : ''; ?>">
+            </div>
+            <!-- INPUT DETALLES -->
+            <div class="caja2 flex-1 relative f-row mw200p">
+                <textarea name="detalles" id="detalles" cols="30" rows="1" placeholder="Detalles..."style=" color: white;" class="bg-black1F <?= (isset($_GET['editar']) && !is_null($id_comercial->detalles_comercial)) ? 'negrota bg-yellow-strong' : ''; ?> w100p fz15 select p10 b-shadow-5-1-gray" name="detalles" id="detalles" autocomplete="off"><?= (isset($_GET['editar'])) ? $id_comercial->detalles_comercial : ''; ?></textarea>
+                <div class="options index190 b-shadow-5-1-black w200px top50 Mh100px br10 bg-white" id="selectdetalle">
+                    <div class="option">
+                        <?php foreach(Pases_historial::DetallesHistorial() as $item):?>
+                        <input type="radio" class="item-radio programa-radio" name="id_programa" id="detalle_<?= $item->historial_detalles?>">
+                        <label for="detalle_<?= $item->historial_detalles?>" onclick="ValueOfLabel_programa('<?= $item->historial_detalles?>')" class="opt p10 relative"><?= $item->historial_detalles?></label>
+                        <?php endforeach;?>
+                    </div>
+                </div>
             </div>
             <!-- BUTTON'S BOX -->
-            <div class="btn flex-1 bg-black">
-                <button type="submit" class="w100p p10 bg-purple mayus pointer negrita" name="<?= isset($_GET['editar'])? 'editar_comercial' : 'insertar_comercial' ?>" value="<?= (isset($_GET['editar'])) ? $id_comercial->id_comercial : '1';?>" id="insertar_comercial" onclick="localStorage.clear()">
+            <div class="btn bg-black">
+                <button type="submit" class="p10 bg-purple mayus pointer negrita" name="<?= isset($_GET['editar'])? 'editar_comercial' : 'insertar_comercial' ?>" value="<?= (isset($_GET['editar'])) ? $id_comercial->id_comercial : '1';?>" id="insertar_comercial" onclick="localStorage.clear()">
                     <?= isset($_GET['editar'])? 'Guardar' : 'Registrar' ?>
                 </button>
                 <?php if(isset($_GET['editar'])):?>
                 <a href="index.php" class="p10 bg-red">Cancelar</a>
                 <?php endif;?>
-            </div>
-        </div>
-        <div class="caja2 flex-1 relative f-row w100p">
-            <textarea name="detalles" id="detalles" cols="30" rows="3" placeholder="Detalles..."style=" color: white;" class="bg-black1F <?= (isset($_GET['editar']) && !is_null($id_comercial->detalles_comercial)) ? 'negrota bg-yellow-strong' : ''; ?> w100p fz15 select p10 b-shadow-5-1-gray" name="detalles" id="detalles" autocomplete="off"><?= (isset($_GET['editar'])) ? $id_comercial->detalles_comercial : ''; ?></textarea>
-            <div class="options index190 b-shadow-5-1-black w200px top50 Mh100px br10 bg-white" id="selectdetalle">
-                <div class="option">
-                    <?php foreach(Pases_historial::DetallesHistorial() as $item):?>
-                    <input type="radio" class="item-radio programa-radio" name="id_programa" id="detalle_<?= $item->historial_detalles?>">
-                    <label for="detalle_<?= $item->historial_detalles?>" onclick="ValueOfLabel_programa('<?= $item->historial_detalles?>')" class="opt p10 relative"><?= $item->historial_detalles?></label>
-                    <?php endforeach;?>
-                </div>
             </div>
         </div>
     </form>
