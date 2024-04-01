@@ -26,9 +26,7 @@
                 <div class="option">
                     <?php foreach(Programas::Mostrar() as $item):?>
                     <input type="radio" class="item-radio programa-radio" name="id_programa" id="programa_<?= $item->id_programa?>">
-                    <label for="programa_<?= $item->id_programa?>" onclick="ValueOfLabel_programa('<?= $item->des_programa?>')" class="opt p10 relative">
-                        <?= $item->des_programa?>
-                    </label>
+                    <label for="programa_<?= $item->id_programa?>" onclick="ValueOfLabel_programa('<?= $item->des_programa?>')" class="opt p10 relative"><?= $item->des_programa?></label>
                     <?php endforeach;?>
                 </div>
             </div>
