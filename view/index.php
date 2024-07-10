@@ -3,7 +3,7 @@
 <?php include_once("../templates/header.php")?>
     <link rel="stylesheet" href="../css/Comercial2.css">
     <div class="w100p h100p bg-blackt absolute index100 f-col jc-c a-c v-hidden" id="modalFather">XD</div>
-    <header class="bg-black p20 mayus f-row jc-b a-c">
+    <header class="bg-black p20 mayus f-row jc-b a-c wrap">
         <div id="prueba" class="negrita fz30">Comercial</div>
         <div class="f-row gap10 a-c">
             <?= (isset($_SESSION["rol"])) ? $_SESSION["rol"] : header("Location: ../index.php") ?>
@@ -76,7 +76,7 @@
                     <div class="option">
                         <?php foreach(Pases_historial::DetallesHistorial() as $item):?>
                         <input type="radio" class="item-radio programa-radio" name="id_programa" id="detalle_<?= $item->historial_detalles?>">
-                        <label for="detalle_<?= $item->historial_detalles?>" onclick="ValueOfLabel_programa('<?= $item->historial_detalles?>')" class="opt p10 relative"><?= $item->historial_detalles?></label>
+                        <label for="detalle_<?= $item->historial_detalles?>" onclick="ValueOfLabel_detail('<?= $item->historial_detalles?>')" class="opt p10 relative"><?= $item->historial_detalles?></label>
                         <?php endforeach;?>
                     </div>
                 </div>
@@ -96,7 +96,11 @@
     <header class="header-programado bg-black p10 f-row a-c jc-b wrap">
         <h3>Programado</h3>
         <!-- BUSCADOR -->
-        <input type="search" name="" id="buscadorProgramacion" class="p10 br50" placeholder="Buscardor">
+        <div class="f-row wrap jc-a gap10">
+            <input type="search" name="" id="buscadorProgramacion" class="p10 br50" placeholder="Buscardor">
+            <!-- ENLACE PARA REPORTES -->
+            <!-- <a href="" class="bg-red p10 br10">Reportes PDF</a> -->
+        </div>
     </header>
     <!-- TALBA DE COMERCIALES REGISTRADOS -->
     <main class="tabla h100p overflow-auto relative bg-black1F">

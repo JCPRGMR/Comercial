@@ -318,6 +318,11 @@ function ValueOfLabel_cliente(label) {
     localStorage.setItem('clienteValue', label);
     document.getElementById("tipo").focus()
 }
+function ValueOfLabel_detail(label) {
+    var input = document.getElementById("detalles");
+    input.value = label;
+    localStorage.setItem('detailValue', label);
+}
 
 function ValueOfLabel_programa(label) {
     var input = document.getElementById("programa");
